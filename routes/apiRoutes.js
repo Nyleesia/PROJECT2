@@ -9,13 +9,13 @@ router.post("/login", passport.authenticate("local"), function(req, res) {
   res.json("/members");
 });
 
-
 router.post("/signup", function(req, res) {
   console.log(req.body);
   db.User.create({
     email: req.body.email,
     password: req.body.password
-  }).then(function() {
+  })
+  .then(function() {
     res.redirect(307, "/api/login");
   }).catch(function(err) {
     console.log(err);
