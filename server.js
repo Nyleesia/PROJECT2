@@ -1,11 +1,13 @@
 require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
+const express = require("express");
+const exphbs = require("express-handlebars");
+const passport = require("./config/passport");
+const session = require("express-session");
 
-var db = require("./models");
+const db = require("./models");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -21,9 +23,20 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+const api_route = require("./routes/apiRoutes");
+const html_route = require("./routes/htmlRoutes");
+app.use("/api", api_route);
+app.use("/", html_route);
+
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
+});
 
 var syncOptions = { force: false };
 
