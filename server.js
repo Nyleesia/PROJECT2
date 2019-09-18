@@ -23,15 +23,17 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-const api_route = require("./routes/apiRoutes");
-const html_route = require("./routes/htmlRoutes");
-app.use("/api", api_route);
-app.use("/", html_route);
+const apiRoute = require("./routes/apiRoutes");
+const htmlRoute = require("./routes/htmlRoutes");
+app.use("/api", apiRoute);
+app.use("/", htmlRoute);
 
 app.get("/logout", function(req, res) {
   req.logout();
