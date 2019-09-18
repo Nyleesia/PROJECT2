@@ -15,10 +15,13 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    // The password cannot be null
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      private: true,
+      validate: {
+        len: [1]
+      }
     },
     firstName: {
       type: DataTypes.STRING,
