@@ -1,0 +1,23 @@
+<input name="username" id="name"></input>
+<input name="password" id="pass"></input>
+<button id="submit">Submit</button>
+
+<a href="/members">to members</a>
+
+<script>
+    document.getElementById("submit").addEventListener("click", function(e){
+        e.preventDefault();
+        fetch("api/login", {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+            {
+                email: document.getElementById("name").value,
+                password: document.getElementById("pass").value
+            }
+        ), // body data type must match "Content-Type" header
+    }).then(res => res.json()).then(data => window.location.href = data)
+    })
+</script>

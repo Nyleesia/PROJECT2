@@ -9,6 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Set up Middleware
+const passport = require("./config/passport");
+const session = require("express-session");
+
+
+// Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -22,9 +27,22 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Get Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+const apiRoute = require("./routes/apiRoutes");
+const htmlRoute = require("./routes/htmlRoutes");
+app.use("/api", apiRoute);
+app.use("/", htmlRoute);
+
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
+});
 
 const syncOptions = { force: false };
 
