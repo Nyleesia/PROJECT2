@@ -12,9 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.0.0",
-    "express": "^4.17.0",
+    "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
-    "mysql2": "^1.6.5",
+    "mysql2": "^1.7.0",
     "sequelize": "^5.8.6"
   },
   "devDependencies": {
@@ -29,5 +29,17 @@
     "eslint-plugin-prettier": "^3.1.0",
     "mocha": "^6.1.4",
     "prettier": "^1.17.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nyleesia/PROJECT2.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Nyleesia/PROJECT2/issues"
+  },
+  "homepage": "https://github.com/Nyleesia/PROJECT2#readme"
 }
