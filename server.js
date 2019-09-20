@@ -52,11 +52,12 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Start server and sync models 
-db.sequelize.sync(syncOptions).then(function() {
+// Start server and sync models
+db.sequelize.sync({force:true}).then(function() {
   app.listen(PORT, function() {
     console.log(
-      `==>🌎  Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`);
+      `==>🌎  Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`
+    );
   });
 });
 

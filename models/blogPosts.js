@@ -33,11 +33,3 @@ module.exports = function(sequelize, DataTypes) {
 
     return BlogPost;
   };
-  
-//////////////ADD TO USERS MODEL///////////////////////
-  // User.associate = function(models) {
-  //   // Associating Users with Posts
-  //   // When a user is deleted, also delete any associated Posts
-  //   User.hasMany(models.BlogPost, models.Project, {
-  //     onDelete: "cascade"
-  //  });
