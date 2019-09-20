@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 const passport = require("./config/passport");
 const session = require("express-session");
 
-
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -52,11 +51,12 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Start server and sync models 
-db.sequelize.sync(syncOptions).then(function() {
+// Start server and sync models
+db.sequelize.sync({ force: syncOptions.force }).then(function() {
   app.listen(PORT, function() {
     console.log(
-      `==>🌎  Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`);
+      `==>🌎  Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`
+    );
   });
 });
 
