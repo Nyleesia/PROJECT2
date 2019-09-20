@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 const passport = require("./config/passport");
 const session = require("express-session");
 
-
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
