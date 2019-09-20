@@ -1,0 +1,50 @@
+{
+  "name": "nicecity",
+  "version": "1.0.0",
+  "description": "Project 2 Starter",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "lint": "eslint --quiet .",
+    "fix": "eslint --fix .",
+    "test": "npm run lint && cross-env NODE_ENV=test mocha -u bdd --reporter spec --exit"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "sequelize": "^5.8.6",
+    "bcryptjs": "^2.4.3",
+    "express-session": "^1.16.2",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.7.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cross-env": "^5.2.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^4.19.1",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "mocha": "^6.1.4",
+    "prettier": "^1.17.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nyleesia/PROJECT2.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Nyleesia/PROJECT2/issues"
+  },
+  "homepage": "https://github.com/Nyleesia/PROJECT2#readme"
+}
