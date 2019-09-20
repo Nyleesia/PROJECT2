@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS niceCity;
+CREATE DATABASE niceCity;
+USE niceCity;
