@@ -1,14 +1,23 @@
 <p>Sign in!</p>
 
-<input name="username" id="name"></input>
-<input name="password" id="pass"></input>
+<input name="username" id="sign_name"></input>
+<input name="password" id="sign_pass"></input>
 <button id="signin">Submit</button>
 
 
 <p>Please sign up!</p>
-
+<label>email</label>
 <input name="username" id="name"></input>
+<label>password</label>
 <input name="password" id="pass"></input>
+<label>firstname</label>
+<input name="firstname" id="fname"></input>
+<label>lastname</label>
+<input name="lastname" id="lname"></input>
+<label>username</label>
+<input name="username" id="uname"></input>
+<label>picture</label>
+<input name="picture" id="picture"></input>
 <button id="signup">Submit</button>
 
 <script>
@@ -22,10 +31,21 @@
         body: JSON.stringify(
             {
                 email: document.getElementById("name").value,
-                password: document.getElementById("pass").value
+                password: document.getElementById("pass").value,
+                firstName: document.getElementById("fname").value,
+                lastName: document.getElementById("lname").value,
+                userName: document.getElementById("uname").value,
+                userPhoto: document.getElementById("picture").value
             }
         )
-    }).then(res => res.json()).then(data => window.location.href = data)
+    }).then(res => res.json())
+        .then(data =>{
+        console.log(data)
+            if(data.errors){
+                return console.log(data.errors)
+            }
+            window.location.href = data;
+        })
     })
 </script>
 
@@ -39,10 +59,16 @@
         },
         body: JSON.stringify(
             {
-                email: document.getElementById("name").value,
-                password: document.getElementById("pass").value
+                email: document.getElementById("sign_name").value,
+                password: document.getElementById("sign_pass").value
             }
         ), // body data type must match "Content-Type" header
-    }).then(res => res.json()).then(data => window.location.href = data)
+    }).then(data =>{
+        console.log(data)
+            if(data.errors || ){
+                return console.log(data.errors)
+            }else
+            //window.location.href = data;
+        })
     })
 </script>
