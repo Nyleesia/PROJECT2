@@ -38,8 +38,14 @@ const htmlRoute = require("./routes/htmlRoutes");
 app.use("/api", apiRoute);
 app.use("/", htmlRoute);
 
+// logout route defined by passport
 app.get("/logout", function(req, res) {
   req.logout();
+  res.redirect("/");
+});
+
+// redirect any unknown request to /
+app.get("*", function(req, res) {
   res.redirect("/");
 });
 
