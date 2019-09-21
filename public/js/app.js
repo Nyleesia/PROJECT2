@@ -17,7 +17,7 @@ $(".openProjects").on("click", function() {
 // });
 // $.get(url).then(function(data){
 // var projectList = data.user.project;
-// for (var i =0; i < projectList.length; i++){ 
+// for (var i =0; i < projectList.length; i++){
 //     var newProject =   '<div class="card" id="newProjectCard" style="width: 60rem; margin-left:18%;">'+
 //                         '<p class="card-text text-center"></p>'+
 //                         '<img id="imageProject" src="" class="card-img-top" alt="">'+
