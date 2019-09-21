@@ -1,5 +1,7 @@
 # NiceCity
-
+=======
+# PROJECT2    
+Second Group Project: Georgia Tech Full-Stack Web Development Bootcamp
 :city_sunrise: Grow your community by participating in local projects or give back to the community by creating your own project! NiceCity is the perfect way to create a Nicer City!
 
 ## Mission Statement 
