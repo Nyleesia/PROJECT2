@@ -1,0 +1,78 @@
+body {
+    background: url("https://www.muralswallpaper.com/app/uploads/soft-pastel-pink-marble-textures-plain-820x532.jpg");
+    background-size: 100%;
+}
+
+/* .jumbotron {
+    background: url("https://data.whicdn.com/images/327124051/original.gif?t=1550971622") center center / cover no-repeat;
+} */
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom: 5%;
+  right: 5%;
+  margin-left: 15px;
+	background-color: rgb(245, 217, 221);
+	color:rgb(82, 82, 87);
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px rgb(65, 66, 66);
+}
+.my-float{
+	margin-top:22px;
+}
+h1 {
+    text-align: center;
+    color: rgb(97, 94, 94)
+}
+.para {
+    text-align: center; 
+}
+#titleModal {
+    text-align: center;
+}
+p {
+    font-size: 20px;
+}
+.login {
+    text-align: center;
+}
+input {
+    width: 80%;
+    padding: 5px;
+}
+textarea {
+    width: 80%;
+}
+.event_form {
+    float: right;
+    margin-top: 20px;
+    padding: 10px;
+}
+.modal-footer {
+    margin-top: 50px;
+}
+.eventDetails {
+    text-align: left;
+} 
+.banner {
+    width:100%;
+    height: 170px;
+    margin-top: -30px;
+    background-color: rgb(194, 194, 194);
+}
+.profilePic {
+    width:130px;
+    height:150px;
+    background-color:red;
+    margin: 100px 0 0 100px;
+    position: absolute;
+}
+.logo {
+    float:right;
+}
+.list-group-item {
+    line-height: 2.5;
+  }
