@@ -65,8 +65,8 @@ textarea {
     background-color: rgb(132, 131, 134);
 }
 .profilePic {
-    width:150px;
-    height:180px;
+    width:180px;
+    height:200px;
     margin: 50px 0 0 70px;
     position: absolute;
     overflow: hidden;
@@ -85,7 +85,7 @@ textarea {
     line-height: 2.5;
   }
 .tabs {
-    margin: -15px 0 0 70%;
+    margin: 11px 0 0 70%;
     position: absolute;
     
 }
