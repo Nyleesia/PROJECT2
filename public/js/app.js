@@ -9,7 +9,7 @@ $(".openProjects").on("click", function() {
   $(".userProjectsAttended").hide();
   $(".userProjectsPending").show();
 });
-$.get("/profile").then(function(data){
+$.get("/profile").then(function(data) {
   console.log("Hello");
   console.log(data);
 });
