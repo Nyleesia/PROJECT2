@@ -26,13 +26,13 @@
                         <form method="POST" action="//create">
                             <div class="modal-body">
                                 <p>
-                                    <p>Username:</p>
-                                    <input type="text" name="username">
+                                    <p>Email</p>
+                                    <input name="username" id="sign_name"></input>
                                     <p>Password:</p>
-                                    <input type="text" name="password">
+                                    <input name="password" id="sign_pass"></input>
                                     <br>
                                     <br>
-                                    <button type="submit" class="new_user">Submit Information</button>
+                                    <button id="signin">Submit</button>
                                 </p>
                             </div>
                         </form>
@@ -56,22 +56,24 @@
                             <div class="modal-body">
                                 <p>
                                     <p> First Name:</p>
-                                    <input type="text" name="email">
+                                    <input name="firstname" id="fname"></input>
                                     <br>
                                     <br>
                                     <p> Last Name:</p>
-                                    <input type="text" name="email">
+                                    <input name="lastname" id="lname"></input>
                                     <br>
+                                    <p>Username</p>
+                                    <input name="username" id="uname"></input>
                                     <br>
                                     <p> Email:</p>
-                                    <input type="text" name="email">
+                                    <input name="username" id="name"></input>
                                     <br>
                                     <br>
                                     <p> Password:</p>
-                                    <input type="text" name="picture">
+                                    <input name="password" id="pass"></input>
                                     <br>
                                     <br>
-                                    <button type="submit" class="new_user">Submit Information</button>
+                                    <button id="signup">Submit</button>
                                 </p>
                             </div>
                         </form>
@@ -84,33 +86,6 @@
     </div>
     <br>
 
-<p>Sign in!</p>
-
-<input name="username" id="sign_name"></input>
-<input name="password" id="sign_pass"></input>
-<button id="signin">Submit</button>
-
-
-<p>Please sign up!</p>
-<label>email</label>
-<input name="username" id="name"></input>
-<br />
-<label>password</label>
-<input name="password" id="pass"></input>
-<br />
-<label>firstname</label>
-<input name="firstname" id="fname"></input>
-<br />
-<label>lastname</label>
-<input name="lastname" id="lname"></input>
-<br />
-<label>username</label>
-<input name="username" id="uname"></input>
-<br />
-<label>picture</label>
-<input name="picture" id="picture"></input>
-<br />
-<button id="signup">Submit</button>
 
 <script>
     document.getElementById("signup").addEventListener("click", function(e){
