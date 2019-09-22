@@ -1,17 +1,17 @@
 <div class="container">
-        <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#loginForm" id="login" style="float: right; margin:5px;">Log
+        <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#loginForm" id="login" style="float: right; margin:5px;
+        font-family: moonsans; font-size: 30px;"">Log
             in</button>
         <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newUserForm" id="newUser"
-            style="float: right; margin:5px;">Create Account</button>
+            style="float: right; margin:5px; font-family: moonsans; font-size: 30px;"">Create Account</button>
         <br>
         <img src="https://user-images.githubusercontent.com/50628151/65193057-a5296f00-da47-11e9-98c0-999c8c2f781a.png"
             style="width:750px; margin-left: 200px;">
-{{!--        
-        <h1>Purpose</h1> --}}
-        <p class="para">With NiceCity, you learn about the surroundings within your community. </p>
-        <p class="para">You come to share your acts of kindness and see what others </p>
-        <p class="para">are doing for a change as well! Find events in which you can volunteer and rsvp!</p.>
-            <p class="para">Earn badges for your doings and receive completion forms for your deeds.</p>
+
+        <p class="para" style="font-family: moonsans; font-size: 30px;">With NiceCity, you learn about the surroundings within your community. </p>
+        <p class="para" style="font-family: moonsans; font-size: 30px;">You come to share your acts of kindness and see what others </p>
+        <p class="para" style="font-family: moonsans; font-size: 30px;">are doing for a change as well! Find events in which you can volunteer and rsvp!</p.>
+        <p class="para" style="font-family: moonsans; font-size: 30px;" >Earn badges for your doings and receive completion forms for your deeds.</p>
 
             
         <!-- Modal For New User -->
@@ -20,19 +20,18 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" id="titleModal">Login</h4>
+                            <h4 class="modal-title" id="titleModal" style="font-family: moonsans; font-size: 30px;">Login</h4>
                         </div>
                         <form method="POST" action="//create">
                             <div class="modal-body">
                                 <p>
-                                    <p>Email</p>
+                                    <p style="font-family: moonsans; font-size: 30px;">Email:</p>
                                     <input name="username" id="sign_name"></input>
-                                    <p>Password:</p>
+                                    <p style="font-family: moonsans; font-size: 30px;">Password:</p>
                                     <input name="password" id="sign_pass"></input>
                                     <br>
                                     <br>
-                                    <button id="signin">Submit</button>
+                                    <button id="signin" class="btn btn-secondary" style="font-family: moonsans; font-size: 30px;">Submit</button>
                                 </p>
                             </div>
                         </form>
@@ -49,31 +48,30 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" id="titleModal">Sign Up</h4>
+                            <h4 class="modal-title" id="titleModal" style="font-family: moonsans; font-size: 30px;">Sign Up</h4>
                         </div>
                         <form method="POST" action="//create">
                             <div class="modal-body">
                                 <p>
-                                    <p> First Name:</p>
+                                    <p style="font-family: moonsans; font-size: 30px;"> First Name:</p>
                                     <input name="firstname" id="fname"></input>
                                     <br>
                                     <br>
-                                    <p> Last Name:</p>
+                                    <p style="font-family: moonsans; font-size: 30px;"> Last Name:</p>
                                     <input name="lastname" id="lname"></input>
                                     <br>
-                                    <p>Username</p>
+                                    <p style="font-family: moonsans; font-size: 30px;">Username:</p>
                                     <input name="username" id="uname"></input>
                                     <br>
-                                    <p> Email:</p>
+                                    <p style="font-family: moonsans; font-size: 30px;"> Email:</p>
                                     <input name="username" id="name"></input>
                                     <br>
                                     <br>
-                                    <p> Password:</p>
-                                    <input name="password" id="pass"></input>
+                                    <p style="font-family: moonsans; font-size: 30px;"> Password:</p>
+                                    <input name="password" id="pass" ></input>
                                     <br>
                                     <br>
-                                    <button id="signup">Submit</button>
+                                    <button id="signup" class="btn btn-secondary" style="font-family: moonsans; font-size: 30px;">Submit</button>
                                 </p>
                             </div>
                         </form>
