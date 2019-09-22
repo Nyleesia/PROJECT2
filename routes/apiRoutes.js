@@ -1,25 +1,42 @@
 const db = require("../models");
 const passport = require("../config/passport");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "public/uploads");
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + "-" + Date.now());
+  }
+});
+
+const upload = multer({ storage: storage });
 
 const express = require("express");
 
 const router = express.Router();
 
-router.post("/login", passport.authenticate("local"), function(req, res) {
-  res.json("/profiles");
-});
+router.post(
+  "/login",
+  upload.single("avatar"),
+  passport.authenticate("local"),
+  function(req, res) {
+    res.json("/profiles");
+  }
+);
 
-router.post("/signup", function(req, res) {
-  console.log(req.body);
+router.post("/signup", upload.single("avatar"), function(req, res) {
   db.User.create({
     email: req.body.email,
     password: req.body.password,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     userName: req.body.userName,
-    userPhoto: req.body.userPhoto
+    userPhoto: req.file.path
   })
     .then(function() {
+      console.log("success");
       res.redirect(307, "/api/login");
     })
     .catch(function(err) {

@@ -9,10 +9,10 @@ $(".openProjects").on("click", function() {
   $(".userProjectsAttended").hide();
   $(".userProjectsPending").show();
 });
-$.get("/profile").then(function(data) {
-  console.log("Hello");
-  console.log(data);
-});
+// $.get("/profile").then(function(data) {
+//   console.log("Hello");
+//   //console.log(data);
+// });
 // var url =;
 // $.get(url).then(function(data){
 //     userData = data.user;
