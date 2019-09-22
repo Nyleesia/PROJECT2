@@ -93,7 +93,7 @@
 
 <p>Please sign up!</p>
 <label>email</label>
-<input name="username" id="name"></input>
+<input name="email" id="email"></input>
 <br />
 <label>password</label>
 <input name="password" id="pass"></input>
@@ -110,34 +110,25 @@
 <label>picture</label>
 <input name="picture" id="picture"></input>
 <br />
+<input type="file" id="avatar" name="avatar" />
 <button id="signup">Submit</button>
 
 <script>
     document.getElementById("signup").addEventListener("click", function(e){
+        const formData = new FormData();
+        formData.append('avatar', document.getElementById("avatar").files[0]);
+        formData.append('password', document.getElementById("pass").value);
+        formData.append('email', document.getElementById("email").value);
+        formData.append('firstName', document.getElementById("fname").value);
+        formData.append('lastName', document.getElementById("lname").value);
+        formData.append('userName', document.getElementById("uname").value);
         e.preventDefault();
         fetch("api/signup", {
-        method: 'POST', //  *GET, POST, PUT, DELETE, etc.
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(
-            {
-                email: document.getElementById("name").value,
-                password: document.getElementById("pass").value,
-                firstName: document.getElementById("fname").value,
-                lastName: document.getElementById("lname").value,
-                userName: document.getElementById("uname").value,
-                userPhoto: document.getElementById("picture").value
-            }
-        )
-    }).then(res => res.json())
-        .then(data =>{
-        console.log(data)
-            if(data.errors){
-                return console.log(data.errors)
-            }
-            window.location.href = data;
-        })
+        method: 'POST',
+        body: formData
+    }).then(res => {
+        console.log(res); return res.json()
+    }).then(data => window.location.href = data)
     })
 </script>
 
@@ -156,12 +147,12 @@
             }
         ), // body data type must match "Content-Type" header
     }).then(data =>{
-        console.log(data)
             if(data.error){
                 return console.log(data.errors);
             }else if(data.status === 401){
                 return console.log("username or password not right");
             }
+            console.log(data)
             window.location.href = data;
         })
     })
