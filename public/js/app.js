@@ -2,11 +2,16 @@ $(".openAttended").on("click", function() {
   $(".userHoursSpace").hide();
   $(".userProjectsAttended").show();
   $(".userProjectsPending").hide();
+  console.log("hey");
 });
 $(".openProjects").on("click", function() {
   $(".userHoursSpace").hide();
   $(".userProjectsAttended").hide();
   $(".userProjectsPending").show();
+});
+$.get("/profile").then(function(data) {
+  console.log("Hello");
+  console.log(data);
 });
 // var url =;
 // $.get(url).then(function(data){
