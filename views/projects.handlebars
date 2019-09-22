@@ -9,22 +9,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/profile">Account <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/profile" style="font-family: moonsans; font-size: 25px;">Account <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                    aria-haspopup="true" aria-expanded="false" style="font-family: moonsans; font-size: 25px;">
                     Volunteer
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <button id="projectButton" data-toggle="modal" data-target="#postEvent" style="width:100%;">Post Project</button>
+                    <button id="projectButton" data-toggle="modal" data-target="#postEvent" style="width:100%; font-family: moonsans; font-size: 20px;">Post Project</button>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"></a>
                 </div>
         </ul>
         <form class="form-inline my-2 my-lg-0 search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="font-family: moonsans; font-size: 20px;">Search</button>
         </form>
     </div>
 </nav>
@@ -52,33 +52,33 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Volunteer Request Form</h4>
+                        <h4 class="modal-title" style="font-family: moonsans; font-size: 30px;">Volunteer Request Form</h4>
                     </div>
                     <form method="POST" action="//create">
                         <div class="modal-body">
                             <p>
-                                <p>Enter Location:</p>
+                                <p style="font-family: moonsans; font-size: 30px;">Enter Location:</p>
                                 <input type="text" id="locatity" name="event_location">
                                 <br>
                                 <br>
-                                <p>Enter Date and Time of Event:</p>
+                                <p style="font-family: moonsans; font-size: 30px;">Enter Date and Time of Event:</p>
                                 <input type="datetime-local" id="eventDate" name="event_date">
                                 <br>
                                 <br>
-                                <p>Enter Number of Volunteers Needed:</p>
+                                <p style="font-family: moonsans; font-size: 30px;">Enter Number of Volunteers Needed:</p>
                                 <input type="number" id="capacity" name="event_capacity">
                                 <br>
                                 <br>
-                                <p>Detail of Event:</p>
-                                <textarea class="eventDetails" name="event_details"> Event Description...
+                                <p style="font-family: moonsans; font-size: 30px;"> Detail of Event:</p>
+                                <textarea class="eventDetails" name="event_details" > 
                                 </textarea>
                                 <br>
                                 <br>
-                                <p>Link:</p>
+                                <p style="font-family: moonsans; font-size: 30px;">Link:</p>
                                 <input type="text" id="locatity" name="event_link">
                                 <br>
                                 <br>
-                                <button type="submit" class="event_form">Submit Event</button>
+                                <button type="submit" class="event_form; btn btn-secondary" style="font-family: moonsans; font-size: 18px;">Submit Event</button>
                             </p>
                         </div>
                     </form>
