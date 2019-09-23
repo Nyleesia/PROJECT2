@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     photo: {
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING,
       allowNull: true
     },
     capacity: {
@@ -53,7 +53,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-    Project.belongsToMany(models.User, { through: models.ProjectParticipant });
+    Project.belongsToMany(models.User, {
+      as: "attendees",
+      through: models.ProjectParticipant
+    });
   };
 
   return Project;
