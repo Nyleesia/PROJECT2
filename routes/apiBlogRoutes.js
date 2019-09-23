@@ -10,6 +10,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        console.log(err);
       });
   });
 
@@ -23,28 +24,30 @@ module.exports = function(app) {
     })
       .then(function(dbBlogPost) {
         res.json(dbBlogPost);
+        console.log(dbBlogPost);
       })
       .catch(function(err) {
         res.json(err);
+        console.log(err);
       });
   });
 
-  //   // Find a post by the userName of the user who created that post
-  //   app.get("/api/Post/:userName", function(req, res) {
-  //     db.BlogPost.findAll({
-  //       include: [db.User],
-  //       where: {
-  //         userName: req.params.userName
-  //       }
-  //     })
-  //       .then(function(BlogPost) {
-  //         res.json(BlogPost);
-  //       })
-  //       .catch(function(err) {
-  //         res.json(err);
-  //       });
-  //   });
-  // };
+  // Find a post by the userName of the user who created that post
+  app.get("/api/PostName/:userName", function(req, res) {
+    db.BlogPost.findAll({
+      where: {
+        userName: req.params.userName
+      }
+    })
+      .then(function(dbBlogPost) {
+        res.json(dbBlogPost);
+        console.log(dbBlogPost);
+      })
+      .catch(function(err) {
+        res.json(err);
+        console.log(err);
+      });
+  });
 
   // POST route for adding a new post
   app.post("/api/newPost", function(req, res) {
@@ -60,6 +63,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        console.log(err);
       });
   });
 
@@ -73,9 +77,11 @@ module.exports = function(app) {
     })
       .then(function(dbBlogPost) {
         res.json(dbBlogPost);
+        console.log(dbBlogPost);
       })
       .catch(function(err) {
         res.json(err);
+        console.log(err);
       });
   });
 
@@ -89,9 +95,11 @@ module.exports = function(app) {
     })
       .then(function(dbBlogPost) {
         res.json(dbBlogPost);
+        console.log(dbBlogPost);
       })
       .catch(function(err) {
         res.json(err);
+        console.log(err);
       });
   });
 };

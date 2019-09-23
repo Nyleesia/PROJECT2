@@ -38,6 +38,12 @@ const htmlRoute = require("./routes/htmlRoutes");
 app.use("/api", apiRoute);
 app.use("/", htmlRoute);
 
+//Api Routes
+require("./routes/apiBlogRoutes.js")(app);
+require("./routes/apiProjectRoutes.js")(app);
+require("./routes/apiProfileRoutes.js")(app);
+require("./routes/apiCommentRoutes.js")(app);
+
 // logout route defined by passport
 app.get("/logout", function(req, res) {
   req.logout();
