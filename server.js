@@ -35,11 +35,18 @@ app.use(passport.session());
 // Get Routes
 const apiRoute = require("./routes/apiRoutes");
 const htmlRoute = require("./routes/htmlRoutes");
-app.use("/api", apiRoute);
+const userRoute = require("./routes/userRoutes");
+app.use("/api", apiRoute, userRoute);
 app.use("/", htmlRoute);
 
+// logout route defined by passport
 app.get("/logout", function(req, res) {
   req.logout();
+  res.redirect("/");
+});
+
+// redirect any unknown request to /
+app.get("*", function(req, res) {
   res.redirect("/");
 });
 

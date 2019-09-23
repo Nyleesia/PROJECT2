@@ -11,7 +11,8 @@ router.get("/", isAuthenticated, function(req, res) {
 
 // account page redirects user to login if not logged in
 router.get("/profiles/:id?", isAuthenticated, function(req, res) {
-  res.render("profiles");
+  res.render("profiles", { user: req.user });
+
 });
 
 // login route redirects user to account page if logged in
@@ -26,7 +27,7 @@ router.get("/login", function(req, res) {
 // If a user who is not logged in tries to access this route they will be
 //redirected to the signup page
 router.get("/projects/:id?", isAuthenticated, function(req, res) {
-  res.render("projects");
+  res.render("projects", { user: req.user });
 });
 
 module.exports = router;
