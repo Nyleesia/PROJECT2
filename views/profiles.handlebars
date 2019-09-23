@@ -63,14 +63,15 @@
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-                <form method="POST" action="/apiRoutes/create">
+                
                     <div class="modal-body">
-                            <p style="font-family: moonsans; font-size: 20px;">Enter URL for Photo:</p>
-                            <input type="text" id="locatity" name="event_location">
+                        <form action="api/user/updatePhoto" method="POST">
+                            <label style="font-family: moonsans; font-size: 20px;">Enter URL for Photo:</label>
+                            <input type="text" id="" name="event_location">
                             <button id="submitButton" type="submit" class="event_form; btn btn-secondary" style="font-family: moonsans; font-size: 18px;">Submit Photo</button>
-                            
+                        </form>
                     </div>
-                </form>
+               
             </div>
         </div>
     </div>
