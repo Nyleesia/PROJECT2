@@ -9,7 +9,11 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      private: true,
+      unique: {
+        args: true,
+        msg: "Sorry, this email address is already taken. Please try another."
+      },
       validate: {
         isEmail: true
       }
@@ -73,7 +77,18 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "cascade"
     });
 
-    User.belongsToMany(models.Project, { through: models.ProjectParticipant });
+    User.hasMany(models.BlogPost, {
+      onDelete: "cascade"
+    });
+
+    User.hasMany(models.BlogComments, {
+      onDelete: "cascade"
+    });
+
+    User.belongsToMany(models.Project, {
+      as: "attendees",
+      through: models.ProjectParticipant
+    });
   };
 
   return User;

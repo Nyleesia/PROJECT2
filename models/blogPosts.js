@@ -10,8 +10,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     blogPhoto: {
-      type: Sequelize.BLOB,
-      allowNull: false
+      type: Sequelize.STRING,
+      allowNull: true
     },
     blogPost: {
       type: DataTypes.STRING,
@@ -25,6 +25,13 @@ module.exports = function(sequelize, DataTypes) {
   BlogPost.associate = function(models) {
     //Foreign key prevents posts from being made without a user
     BlogPost.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+    BlogPost.hasMany(models.BlogComments, {
+      as: "commentPosts",
       foreignKey: {
         allowNull: false
       }
