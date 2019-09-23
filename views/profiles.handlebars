@@ -70,7 +70,8 @@
                 <div class="modal-body">
                     <form action="api/user/updatePhoto" method="POST">
                         <label style="font-family: moonsans; font-size: 20px;">Enter URL for Photo:</label>
-                        <input type="text" id="" name="event_location">
+                        <input hidden name="email" value="{{user.email}}"></input>
+                        <input type="text" name="userPhoto">
                         <button id="submitButton" type="submit" class="event_form; btn btn-secondary"
                             style="font-family: moonsans; font-size: 18px;">Submit Photo</button>
                     </form>

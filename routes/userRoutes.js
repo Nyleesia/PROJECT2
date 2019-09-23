@@ -6,15 +6,16 @@ router.post("/user/updatePhoto", function(req, res) {
   console.log(req.body);
   if (!req.body.userPhoto) {
     return res.json({ err: "no photo provided" });
-  } else if (!req.body.userEmail) {
+  } else if (!req.body.email) {
     return res.json({ err: "no user specified" });
   }
   db.User.update(
     { userPhoto: req.body.userPhoto },
-    { where: { email: req.body.userEmail } }
+    { where: { email: req.body.email } }
   )
-    .then(data => {
-      return res.json(data);
+    .then(() => {
+      req.user.userPhoto = req.body.userPhoto;
+      return res.redirect("/");
     })
     .catch(err => res.json(err));
 });
