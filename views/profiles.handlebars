@@ -1,6 +1,7 @@
 </style>
 <!-- Navbar content -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd; font-family: moonsans; font-size: 30px;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light"
+    style="background-color: #e3f2fd; font-family: moonsans; font-size: 30px;">
     <a class="navbar-brand" href="#">NiceCity</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,13 +20,15 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-center" href="/projects">Volunteer</a>
-                    <button id="projectButton" data-toggle="modal" data-target="#postEvent" style="width:100%;">Post Project</button>
+                    <button id="projectButton" data-toggle="modal" data-target="#postEvent" style="width:100%;">Post
+                        Project</button>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"></a>
                 </div>
             </li>
         </ul>
-        <button type="button" class="btn btn-secondary" style= "margin-left: 1058px;"><a class="nav-link" href="/logout">Logout</a></button>
+        <button type="button" class="btn btn-secondary" style="margin-left: 1058px;"><a class="nav-link"
+                href="/logout">Logout</a></button>
         {{!-- <form class="form-inline my-2 my-lg-0 search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="font-family: moonsans; font-size: 20px;">Search</button>
@@ -40,9 +43,10 @@
     </div>
     <img class="logo" src="images/finalnicecity.png">
     <div class="row">
-    <div class="col-lg-12 userInformation">
-        <div class="userName" style="font-family: moonsans; font-size: 40px; color: white;">Welcome Back <span id="name" style="font-family: moonsans; font-size: 40px;">{{user.userName}}</span></div>
-        {{!-- <div class="userEmail" style="font-family: moonsans; font-size: 30px; color: white;">Email</div> --}}
+        <div class="col-lg-12 userInformation">
+            <div class="userName" style="font-family: moonsans; font-size: 40px; color: white;">Welcome Back <span
+                    id="name" style="font-family: moonsans; font-size: 40px;">{{user.userName}}</span></div>
+            {{!-- <div class="userEmail" style="font-family: moonsans; font-size: 30px; color: white;">Email</div> --}}
         </div>
     </div>
     <div class="profileInfo"></div>
@@ -63,14 +67,15 @@
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-                <form method="POST" action="/apiRoutes/create">
-                    <div class="modal-body">
-                            <p style="font-family: moonsans; font-size: 20px;">Enter URL for Photo:</p>
-                            <input type="text" id="photoUrl" name="event_location">
-                            <button id="submitButton" type="submit" class="event_form; btn btn-secondary" style="font-family: moonsans; font-size: 18px;">Submit Photo</button>
-                            
-                    </div>
-                </form>
+                <div class="modal-body">
+                    <form action="api/user/updatePhoto" method="POST">
+                        <label style="font-family: moonsans; font-size: 20px;">Enter URL for Photo:</label>
+                        <input hidden name="email" value="{{user.email}}"></input>
+                        <input type="text" name="userPhoto">
+                        <button id="submitButton" type="submit" class="event_form; btn btn-secondary"
+                            style="font-family: moonsans; font-size: 18px;">Submit Photo</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +87,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="font-family: moonsans; font-size: 30px;" >Volunteer Request Form</h4>
+                    <h4 class="modal-title" style="font-family: moonsans; font-size: 30px;">Volunteer Request Form</h4>
                 </div>
                 <form method="POST" action="/apiRoutes/create">
                     <div class="modal-body">
@@ -100,7 +105,7 @@
                             <br>
                             <br>
                             <p style="font-family: moonsans; font-size: 30px;">Detail of Event:</p>
-                            <textarea class="eventDetails" name="event_details"> 
+                            <textarea class="eventDetails" name="event_details">
                                 </textarea>
                             <br>
                             <br>
@@ -108,7 +113,8 @@
                             <input type="text" id="link" name="event_link">
                             <br>
                             <br>
-                            <button type="submit" class="event_form; btn btn-secondary" style="font-family: moonsans; font-size: 30px;" >Submit Event</button>
+                            <button type="submit" class="event_form; btn btn-secondary"
+                                style="font-family: moonsans; font-size: 30px;">Submit Event</button>
                         </p>
                     </div>
                 </form>
