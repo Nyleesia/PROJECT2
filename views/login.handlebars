@@ -1,132 +1,105 @@
+<link rel="stylesheet" href="/styles/error.css">
+
 <div class="container">
-        <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#loginForm" id="login" style="float: right; margin:5px;
+    <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#loginForm" id="login"
+        style="float: right; margin:5px;
         font-family: moonsans; font-size: 30px;">Log
-            in</button>
-        <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newUserForm" id="newUser"
-            style="float: right; margin:5px; font-family: moonsans; font-size: 30px;">Create Account</button>
-        <br>
-        <img src="https://user-images.githubusercontent.com/50628151/65193057-a5296f00-da47-11e9-98c0-999c8c2f781a.png"
-            style="width:750px; margin-left: 200px;">
+        in</button>
+    <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newUserForm" id="newUser"
+        style="float: right; margin:5px; font-family: moonsans; font-size: 30px;">Create Account</button>
+    <br>
+    <img src="https://user-images.githubusercontent.com/50628151/65193057-a5296f00-da47-11e9-98c0-999c8c2f781a.png"
+        style="width:750px; margin-left: 200px;">
 
-        <p class="para" style="font-family: moonsans; font-size: 30px;">With NiceCity, you learn about the surroundings within your community. </p>
-        <p class="para" style="font-family: moonsans; font-size: 30px;">You come to share your acts of kindness and see what others </p>
-        <p class="para" style="font-family: moonsans; font-size: 30px;">are doing for a change as well! Find events in which you can volunteer and rsvp!</p.>
-        <p class="para" style="font-family: moonsans; font-size: 30px;" >Earn badges for your doings and receive completion forms for your deeds.</p>
+    <p class="para" style="font-family: moonsans; font-size: 30px;">With NiceCity, you learn about the surroundings
+        within your community. </p>
+    <p class="para" style="font-family: moonsans; font-size: 30px;">You come to share your acts of kindness and see what
+        others </p>
+    <p class="para" style="font-family: moonsans; font-size: 30px;">are doing for a change as well! Find events in which
+        you can volunteer and rsvp!</p.>
+        <p class="para" style="font-family: moonsans; font-size: 30px;">Earn badges for your doings and receive
+            completion forms for your deeds.</p>
 
-            
+
         <!-- Modal For New User -->
         <div class="modal fade" id="loginForm" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="titleModal" style="font-family: moonsans; font-size: 30px;">Login</h4>
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="titleModal" style="font-family: moonsans; font-size: 30px;">Login
+                        </h4>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            
+                                <p style="font-family: moonsans; font-size: 30px;">Email:</p>
+                                <input name="username" id="sign_name"></input>
+                                <p style="font-family: moonsans; font-size: 30px;">Password:</p>
+                                <input type="password" name="password" id="sign_pass"></input>
+                                <div class="login-error"></div>
+                                <button id="signin" class="btn btn-secondary"
+                                    style="font-family: moonsans; font-size: 30px;">Submit</button>
                         </div>
-                        <form method="POST" action="//create">
-                            <div class="modal-body">
-                                <p>
-                                    <p style="font-family: moonsans; font-size: 30px;">Email:</p>
-                                    <input name="username" id="sign_name"></input>
-                                    <p style="font-family: moonsans; font-size: 30px;">Password:</p>
-                                    <input name="password" id="sign_pass"></input>
-                                    <br>
-                                    <br>
-                                    <button id="signin" class="btn btn-secondary" style="font-family: moonsans; font-size: 30px;">Submit</button>
-                                </p>
-                            </div>
-                        </form>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Modal For New User -->
-            <div class="modal fade" id="newUserForm" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="titleModal" style="font-family: moonsans; font-size: 30px;">Sign Up</h4>
-                        </div>
-                        <form method="POST" action="//create">
-                            <div class="modal-body">
-                                <p>
-                                    <p style="font-family: moonsans; font-size: 30px;"> First Name:</p>
-                                    <input name="firstname" id="fname"></input>
-                                    <br>
-                                    <br>
-                                    <p style="font-family: moonsans; font-size: 30px;"> Last Name:</p>
-                                    <input name="lastname" id="lname"></input>
-                                    <br>
-                                    <p style="font-family: moonsans; font-size: 30px;">Username:</p>
-                                    <input name="username" id="uname"></input>
-                                    <br>
-                                    <p style="font-family: moonsans; font-size: 30px;"> Email:</p>
-                                    <input name="email" id="email"></input>
-                                    <br>
-                                    <br>
-                                    <p style="font-family: moonsans; font-size: 30px;"> Password:</p>
-                                    <input name="password" id="pass" ></input>
-                                    <br>
-                                    <br>
-                                    <button id="signup" class="btn btn-secondary" style="font-family: moonsans; font-size: 30px;">Submit</button>
-                                </p>
+        <!-- Modal For New User -->
+        <div class="modal fade" id="newUserForm" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="titleModal" style="font-family: moonsans; font-size: 30px;">Sign Up
+                        </h4>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="signupfirstName">
+                                <p style="font-family: moonsans; font-size: 30px;"> First Name:</p>
+                                <input name="firstname" id="fname"></input>
+                                <span class="error-message"></span>
                             </div>
-                        </form>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="signuplastName">
+                                <p style="font-family: moonsans; font-size: 30px;"> Last Name:</p>
+                                <input name="lastname" id="lname"></input>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="signupuserName">
+                                <p style="font-family: moonsans; font-size: 30px;">Username:</p>
+                                <input name="username" id="uname"></input>
+                                <span class="error-message"></span>
+                            </div>
+                                <div class="signupuserEmail">
+                                <p style="font-family: moonsans; font-size: 30px;"> Email:</p>
+                                <input name="email" id="email"></input>
+                                <span class="error-message"></span>
+                            </div>
+                                <div class="signuppassword">
+                                <p style="font-family: moonsans; font-size: 30px;"> Password:</p>
+                                <input type="password" name="password" id="pass"></input>
+                                <span class="error-message"></span>
+                            </div>
+                                <div class="signupuserPhoto">
+                                <p style="font-family: moonsans; font-size: 30px;"> Picture:</p>
+                                <input type="file" name="avatar" id="avatar"></input>
+                                <span class="error-message"></span>
+                            </div>
+                            <button id="signup" class="btn btn-secondary"
+                                style="font-family: moonsans; font-size: 30px;">Submit</button>
                         </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-    </div>
-    <br>
+        </div>
+</div>
 
-
-
-<script>
-    document.getElementById("signup").addEventListener("click", function(e){
-        const formData = new FormData();
-        formData.append('avatar', document.getElementById("avatar").files[0]);
-        formData.append('password', document.getElementById("pass").value);
-        formData.append('email', document.getElementById("email").value);
-        formData.append('firstName', document.getElementById("fname").value);
-        formData.append('lastName', document.getElementById("lname").value);
-        formData.append('userName', document.getElementById("uname").value);
-        e.preventDefault();
-        fetch("api/signup", {
-        method: 'POST',
-        body: formData
-    }).then(res => {
-        console.log(res); return res.json()
-    }).then(data => window.location.href = data)
-    })
-</script>
-
-<script>
-    document.getElementById("signin").addEventListener("click", function(e){
-        e.preventDefault();
-        fetch("api/login", {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(
-            {
-                email: document.getElementById("sign_name").value,
-                password: document.getElementById("sign_pass").value
-            }
-        ), // body data type must match "Content-Type" header
-    }).then(data =>{
-            if(data.error){
-                return console.log(data.errors);
-            }else if(data.status === 401){
-                return console.log("username or password not right");
-            }
-            console.log(data)
-            window.location.href = data;
-        })
-    })
-</script>
+<script src="js/loginHandler.js"></script>

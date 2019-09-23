@@ -10,6 +10,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Account <span class="sr-only">(current)</span></a>
+
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -24,7 +25,7 @@
                 </div>
             </li>
         </ul>
-        <button type="button" class="btn btn-secondary" style= "margin-left: 1058px;">Log Out</button>
+        <button type="button" class="btn btn-secondary" style= "margin-left: 1058px;"><a class="nav-link" href="/logout">Logout</a></button>
         {{!-- <form class="form-inline my-2 my-lg-0 search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="font-family: moonsans; font-size: 20px;">Search</button>
@@ -35,12 +36,12 @@
 <div class="banner">
     <div class="profilePic">
         <button id="buttonProfilePhoto" data-toggle="modal" data-target="#postProfilePhoto"></button>
-        <img id="userPhoto" src="images/person.png">
+        <img id="userPhoto" src="{{user.userPhoto}}">
     </div>
     <img class="logo" src="images/finalnicecity.png">
     <div class="row">
     <div class="col-lg-12 userInformation">
-        <div class="userName" style="font-family: moonsans; font-size: 40px; color: white;">Welcome Back <span id="name" style="font-family: moonsans; font-size: 40px;">"User Name"</span></div>
+        <div class="userName" style="font-family: moonsans; font-size: 40px; color: white;">Welcome Back <span id="name" style="font-family: moonsans; font-size: 40px;">{{user.userName}}</span></div>
         {{!-- <div class="userEmail" style="font-family: moonsans; font-size: 30px; color: white;">Email</div> --}}
         </div>
     </div>
