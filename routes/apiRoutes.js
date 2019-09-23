@@ -27,22 +27,24 @@ router.post(
 );
 
 router.post("/signup", upload.single("avatar"), function(req, res) {
-  db.User.create({
-    email: req.body.email,
-    password: req.body.password,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    userName: req.body.userName,
-    userPhoto: req.file.path
-  })
-    .then(function() {
-      console.log("success");
-      res.redirect(307, "/api/login");
+  if (!req.file) {
+    return res.json({ errors: [{ message: "Must include image" }] });
+  } else {
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      userPhoto: req.file.path.replace("public", "")
     })
-    .catch(function(err) {
-      console.log(err);
-      res.json(err);
-    });
+      .then(function() {
+        res.redirect(307, "/api/login");
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  }
 });
 
 //
