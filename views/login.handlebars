@@ -1,82 +1,106 @@
-<p>Sign in!</p>
+<link rel="stylesheet" href="/styles/error.css">
 
-<input name="username" id="sign_name"></input>
-<input name="password" id="sign_pass"></input>
-<button id="signin">Submit</button>
+<div class="container">
+    <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#loginForm" id="login"
+        style="float: right; margin:5px;
+        font-family: moonsans; font-size: 30px;">Log
+        in</button>
+    <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newUserForm" id="newUser"
+        style="float: right; margin:5px; font-family: moonsans; font-size: 30px;">Create Account</button>
+    <br>
+    <img src="https://user-images.githubusercontent.com/50628151/65193057-a5296f00-da47-11e9-98c0-999c8c2f781a.png"
+        style="width:750px; margin-left: 200px;">
+
+    <p class="para" style="font-family: moonsans; font-size: 30px;">With NiceCity, you learn about the surroundings
+        within your community. </p>
+    <p class="para" style="font-family: moonsans; font-size: 30px;">You come to share your acts of kindness and see what
+        others </p>
+    <p class="para" style="font-family: moonsans; font-size: 30px;">are doing for a change as well! Find events in which
+        you can volunteer and rsvp!</p.>
+        <p class="para" style="font-family: moonsans; font-size: 30px;">Earn badges for your doings and receive
+            completion forms for your deeds.</p>
 
 
-<p>Please sign up!</p>
-<label>email</label>
-<input name="username" id="name"></input>
-<br />
-<label>password</label>
-<input name="password" id="pass"></input>
-<br />
-<label>firstname</label>
-<input name="firstname" id="fname"></input>
-<br />
-<label>lastname</label>
-<input name="lastname" id="lname"></input>
-<br />
-<label>username</label>
-<input name="username" id="uname"></input>
-<br />
-<label>picture</label>
-<input name="picture" id="picture"></input>
-<br />
-<button id="signup">Submit</button>
+        <!-- Modal For New User -->
+        <div class="modal fade" id="loginForm" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="titleModal" style="font-family: moonsans; font-size: 30px;">Login
+                        </h4>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            
+                                <p style="font-family: moonsans; font-size: 30px;">Email:</p>
+                                <input name="username" id="sign_name"></input>
+                                <p style="font-family: moonsans; font-size: 30px;">Password:</p>
+                                <input  type="password" name="password" id="sign_pass"></input>
+                                <div class="login-error"></div>
+                                <br>
+                                <button id="signin" class="btn btn-secondary"
+                                    style="font-family: moonsans; font-size: 30px;">Submit</button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<script>
-    document.getElementById("signup").addEventListener("click", function(e){
-        e.preventDefault();
-        fetch("api/signup", {
-        method: 'POST', //  *GET, POST, PUT, DELETE, etc.
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(
-            {
-                email: document.getElementById("name").value,
-                password: document.getElementById("pass").value,
-                firstName: document.getElementById("fname").value,
-                lastName: document.getElementById("lname").value,
-                userName: document.getElementById("uname").value,
-                userPhoto: document.getElementById("picture").value
-            }
-        )
-    }).then(res => res.json())
-        .then(data =>{
-        console.log(data)
-            if(data.errors){
-                return console.log(data.errors)
-            }
-            window.location.href = data;
-        })
-    })
-</script>
+        <!-- Modal For New User -->
+        <div class="modal fade" id="newUserForm" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="titleModal" style="font-family: moonsans; font-size: 30px;">Sign Up
+                        </h4>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="signupfirstName">
+                                <p style="font-family: moonsans; font-size: 30px;"> First Name:</p>
+                                <input name="firstname" id="fname"></input>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="signuplastName">
+                                <p style="font-family: moonsans; font-size: 30px;"> Last Name:</p>
+                                <input name="lastname" id="lname"></input>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="signupuserName">
+                                <p style="font-family: moonsans; font-size: 30px;">Username:</p>
+                                <input name="username" id="uname"></input>
+                                <span class="error-message"></span>
+                            </div>
+                                <div class="signupuserEmail">
+                                <p style="font-family: moonsans; font-size: 30px;"> Email:</p>
+                                <input name="email" id="email"></input>
+                                <span class="error-message"></span>
+                            </div>
+                                <div class="signuppassword">
+                                <p style="font-family: moonsans; font-size: 30px;"> Password:</p>
+                                <input type="password" name="password" id="pass"></input>
+                                <span class="error-message"></span>
+                            </div>
+                                <div class="signupuserPhoto">
+                                <p style="font-family: moonsans; font-size: 30px;"> Picture:</p>
+                                <input type="file" name="avatar" id="avatar"></input>
+                                <span class="error-message"></span>
+                            </div>
+                            <button id="signup" class="btn btn-secondary"
+                                style="font-family: moonsans; font-size: 30px;">Submit</button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
 
-<script>
-    document.getElementById("signin").addEventListener("click", function(e){
-        e.preventDefault();
-        fetch("api/login", {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(
-            {
-                email: document.getElementById("sign_name").value,
-                password: document.getElementById("sign_pass").value
-            }
-        ), // body data type must match "Content-Type" header
-    }).then(data =>{
-        console.log(data)
-            if(data.error){
-                return console.log(data.errors);
-            }else if(data.status === 401){
-                return console.log("username or password not right");
-            }
-            window.location.href = data;
-        })
-    })
-</script>
+<script src="js/loginHandler.js"></script>
