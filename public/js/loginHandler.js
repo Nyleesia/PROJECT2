@@ -76,14 +76,22 @@ document.getElementById("signin").addEventListener("click", function(e) {
       email: document.getElementById("sign_name").value,
       password: document.getElementById("sign_pass").value
     }) // body data type must match "Content-Type" header
-  }).then(res => {
-    if (res.status === 400) {
-      handleLoginErrors("username or password cannot be empty");
-    }
-    if (res.status === 401) {
-      handleLoginErrors("username or password are incorrect");
-    }
-  });
+  })
+    .then(res => {
+      if (res.status === 400) {
+        handleLoginErrors("username or password cannot be empty");
+      }
+      if (res.status === 401) {
+        handleLoginErrors("username or password are incorrect");
+      }
+      return res.json();
+    })
+    .then(data => {
+      if (data.errors) {
+        return handleErrors(data.errors);
+      }
+      window.location.href = data;
+    });
 });
 
 function handleLoginErrors(message) {
