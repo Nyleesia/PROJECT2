@@ -21,31 +21,38 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"></a>
                 </div>
-            </nav>
-        </nav>
-    <div class="container">
-  <div class = "container">
+        </ul>
+        <form class="form-inline my-2 my-lg-0 search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="font-family: moonsans; font-size: 20px;">Search</button>
+        </form>
+    </div>
+</nav>
+</nav>
+<div class="container">
     <div class="row main-content-container justify-content-center">
-    <div class="card" style="width: 40rem; ">
-    <img src="https://user-images.githubusercontent.com/50628151/65201049-263c3280-da57-11e9-8985-2a67f826ba96.PNG" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Breast Cancer Walk</h5>
-          <p class="card-text">Walking for a cure. Come out and join us as we celebrate our survivors and walk for our angels.
-          </p>
+        <div class="card" style="width: 40rem; ">
+            <img src="https://user-images.githubusercontent.com/50628151/65201049-263c3280-da57-11e9-8985-2a67f826ba96.PNG"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Breast Cancer Walk</h5>
+                <p class="card-text">Walking for a cure. Come out and join us as we celebrate our survivors and walk for
+                    our angels.
+                </p>
+            </div>
+            <a href="#" class="btn btn-dark">RSVP</a>
+            <div class="card-body">
+                <a href="http://main.acsevents.org/goto/doseofabby" class="card-link"><strong>View Event
+                        Details</strong></a>
+            </div>
         </div>
-        <a href="#" class="btn btn-dark">RSVP</a>
-        <div class="card-body">
-          <a href="http://main.acsevents.org/goto/doseofabby" class="card-link"><strong>View Event Details</strong></a>
-        </div>
-      </div>
-       <!-- Modal -->
-       <div class="modal fade" id="postEvent" role="dialog">
+        <!-- Modal -->
+        <div class="modal fade" id="postEvent" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Volunteer Request Form</h4>
+                        <h4 class="modal-title" style="font-family: moonsans; font-size: 30px;">Volunteer Request Form</h4>
                     </div>
                     <form method="POST" action="/api/newProject">
                         <div class="modal-body">
@@ -54,24 +61,28 @@
                                 <input type="text" id="locatity" name="event_location">
                                 <br>
                                 <br>
-                                <p>Enter Date and Time of Event:</p>
+                                <p style="font-family: moonsans; font-size: 30px;">(Optional) Event Photo:</p>
+                                <input type="text" id="locatity" name="event_photo">
+                                <br>
+                                <br>
+                                <p style="font-family: moonsans; font-size: 30px;">Enter Date and Time of Event:</p>
                                 <input type="datetime-local" id="eventDate" name="event_date">
                                 <br>
                                 <br>
-                                <p>Enter Number of Volunteers Needed:</p>
+                                <p style="font-family: moonsans; font-size: 30px;">Enter Number of Volunteers Needed:</p>
                                 <input type="number" id="capacity" name="event_capacity">
                                 <br>
                                 <br>
-                                <p>Detail of Event:</p>
-                                <textarea class="eventDetails" name="event_details"> Event Description...
+                                <p style="font-family: moonsans; font-size: 30px;"> Detail of Event:</p>
+                                <textarea class="eventDetails" name="event_details" > 
                                 </textarea>
                                 <br>
                                 <br>
-                                <p>Link:</p>
+                                <p style="font-family: moonsans; font-size: 30px;">Link:</p>
                                 <input type="text" id="locatity" name="event_link">
                                 <br>
                                 <br>
-                                <button type="submit" class="event_form">Submit Event</button>
+                                <button type="submit" class="event_form; btn btn-secondary" style="font-family: moonsans; font-size: 18px;">Submit Event</button>
                             </p>
                         </div>
                     </form>

@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
     likes: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    dislikes: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   });
 
