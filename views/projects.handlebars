@@ -98,6 +98,9 @@
         e.preventDefault();
         var title = $("#projTitle").val();
         var urlPhoto = $("#urlPhoto").val();
+        if (urlPhoto === ""){
+            urlPhoto = "http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png";
+        }
         var projDate = $("#projDate").val();
         var projTime = $("#projTime").val();
         var cap = $("#capacity").val();
@@ -115,6 +118,7 @@
                 link: url
             },
             function (results) {
+                window.location.href = "projects/"+results.id;
                 console.log(results)
             });
     });
