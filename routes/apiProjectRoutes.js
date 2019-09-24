@@ -119,6 +119,7 @@ module.exports = function(app) {
 
   // POST route for adding a new project
   app.post("/api/newProject", function(req, res) {
+    console.log(req.body);
     db.Project.create({
       description: req.body.description,
       eventDate: req.body.eventDate,
@@ -127,9 +128,9 @@ module.exports = function(app) {
       capacity: req.body.capacity,
       link: req.body.link,
       title: req.body.title,
-      userId: req.user.id,
-      participantCount: req.body.participantCount,
-      completed: req.body.completed,
+      UserId: req.user.id,
+      participantCount: 0,
+      completed: false,
       include: [db.User]
     })
       .then(function(dbProject) {
