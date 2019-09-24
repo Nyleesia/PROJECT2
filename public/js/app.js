@@ -9,6 +9,14 @@ $(".openProjects").on("click", function() {
   $(".userProjectsAttended").hide();
   $(".userProjectsPending").show();
 });
+projects = [];
+if (projects.length === 0) {
+  var noProject = $("<div>").attr("class", "noProjectAppended");
+  var words =
+    "<h2>Your volunteer box is currently empty. Take a peek at the latest projects posted:   <a href='/projects'>HERE<a><h2>";
+  noProject.append(words);
+  $(".userProjectsPending").append(noProject);
+}
 // $.get("/profile").then(function(data) {
 //   console.log("Hello");
 //   //console.log(data);

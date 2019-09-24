@@ -33,10 +33,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Get Routes
-const apiRoute = require("./routes/apiRoutes");
+const apiLoginRoute = require("./routes/apiLoginRoutes");
 const htmlRoute = require("./routes/htmlRoutes");
-const userRoute = require("./routes/userRoutes");
-app.use("/api", apiRoute, userRoute);
+const userRoute = require("./routes/apiUserRoutes");
+require("./routes/apiProjectRoutes")(app);
+app.use("/api", apiLoginRoute, userRoute);
 app.use("/", htmlRoute);
 
 //Api Routes
