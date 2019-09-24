@@ -37,6 +37,10 @@ const apiLoginRoute = require("./routes/apiLoginRoutes");
 const htmlRoute = require("./routes/htmlRoutes");
 const userRoute = require("./routes/apiUserRoutes");
 require("./routes/apiProjectRoutes")(app);
+require("./routes/apiProjectParticipantRoutes")(app);
+require("./routes/apiProfileRoutes")(app);
+require("./routes/apiBlogRoutes")(app);
+require("./routes/apiCommentRoutes")(app);
 app.use("/api", apiLoginRoute, userRoute);
 app.use("/", htmlRoute);
 
