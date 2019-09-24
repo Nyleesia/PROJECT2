@@ -160,3 +160,8 @@ textarea {
     text-align: center;
     margin-left: 13%;
 }
+h2 {
+    padding: 30px;
+    text-align: center;
+    font-family: moonsans;
+}
