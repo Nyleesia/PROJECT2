@@ -1,11 +1,22 @@
 module.exports = function(sequelize, DataTypes) {
   let Project = sequelize.define("Project", {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 60]
+      }
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1, 150]
       }
+    },
+    link: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     eventDate: {
       type: DataTypes.DATEONLY,

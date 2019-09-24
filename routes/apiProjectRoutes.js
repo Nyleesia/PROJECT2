@@ -8,14 +8,13 @@ module.exports = function(app) {
       include: [
         {
           model: db.User,
-          where: {},
           attributes: ["id", "username"],
           as: "attendees"
         }
       ]
     })
       .then(function(dbProject) {
-        res.send(dbProject);
+        res.json(dbProject);
         console.log(dbProject);
       })
       .catch(function(err) {
@@ -105,24 +104,6 @@ module.exports = function(app) {
     db.Project.findAll({
       where: {
         id: req.params.id
-      },
-      include: [db.User]
-    })
-      .then(function(dbProject) {
-        res.json(dbProject);
-        console.log(dbProject);
-      })
-      .catch(function(err) {
-        res.json(err);
-        console.log(err);
-      });
-  });
-
-  // GET route for finding a project created by a specific user
-  app.get("/api/projectsName/:userName", function(req, res) {
-    db.Project.findAll({
-      where: {
-        userName: req.params.userName
       },
       include: [db.User]
     })
