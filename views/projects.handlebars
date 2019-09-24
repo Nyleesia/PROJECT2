@@ -94,16 +94,18 @@
     </div>
 </div>
 <script>
-    $("#projSubmit").on("click", function () {
+    $("#projSubmit").on("click", function (e) {
+        e.preventDefault();
         var title = $("#projTitle").val();
         var urlPhoto = $("#urlPhoto").val();
         var projDate = $("#projDate").val();
-        var projTime = $("#projTime")
+        var projTime = $("#projTime").val();
         var cap = $("#capacity").val();
         var detail = $(".eventDetails").val();
         var url = $("#urlLink").val();
-        $.post("/api/newProject", function (results) {
-            var newProject = {
+
+        $.post("/api/newProject",
+            {
                 title: title,
                 photo: urlPhoto,
                 eventDate: projDate,
@@ -111,7 +113,9 @@
                 capacity: cap,
                 description: detail,
                 link: url
-            }
-        });
+            },
+            function (results) {
+                console.log(results)
+            });
     });
 </script>

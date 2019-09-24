@@ -30,12 +30,12 @@ router.get("/projects/:id?", isAuthenticated, function(req, res) {
     include: [
       {
         model: db.User,
-        where: {},
         attributes: ["id", "username"],
         as: "attendees"
       }
     ]
   }).then(data => {
+    console.log(data);
     res.render("projects", {
       user: req.user,
       projects: data,

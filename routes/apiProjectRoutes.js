@@ -8,14 +8,13 @@ module.exports = function(app) {
       include: [
         {
           model: db.User,
-          where: {},
           attributes: ["id", "username"],
           as: "attendees"
         }
       ]
     })
       .then(function(dbProject) {
-        res.send(dbProject);
+        res.json(dbProject);
         console.log(dbProject);
       })
       .catch(function(err) {
@@ -118,34 +117,20 @@ module.exports = function(app) {
       });
   });
 
-  // GET route for finding a project created by a specific user
-  app.get("/api/projectsName/:userName", function(req, res) {
-    db.Project.findAll({
-      where: {
-        userName: req.params.userName
-      },
-      include: [db.User]
-    })
-      .then(function(dbProject) {
-        res.json(dbProject);
-        console.log(dbProject);
-      })
-      .catch(function(err) {
-        res.json(err);
-        console.log(err);
-      });
-  });
-
   // POST route for adding a new project
   app.post("/api/newProject", function(req, res) {
+    console.log(req.body);
     db.Project.create({
       description: req.body.description,
       eventDate: req.body.eventDate,
       eventTime: req.body.eventTime,
       photo: req.body.photo,
       capacity: req.body.capacity,
-      participantCount: req.body.participantCount,
-      completed: req.body.completed,
+      link: req.body.link,
+      title: req.body.title,
+      UserId: req.user.id,
+      participantCount: 0,
+      completed: false,
       include: [db.User]
     })
       .then(function(dbProject) {
