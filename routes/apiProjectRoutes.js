@@ -144,6 +144,9 @@ module.exports = function(app) {
       eventTime: req.body.eventTime,
       photo: req.body.photo,
       capacity: req.body.capacity,
+      link: req.body.link,
+      title: req.body.title,
+      userId: req.user.id,
       participantCount: req.body.participantCount,
       completed: req.body.completed,
       include: [db.User]
