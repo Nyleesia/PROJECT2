@@ -176,6 +176,24 @@ module.exports = function(app) {
       });
   });
 
+  // PUT route for adding participants a project
+  app.put("/addParticipant", function(req, res) {
+    db.Projects.update(req.body, {
+      where: {
+        participantCount: req.body.participantCount
+      },
+      include: [db.User]
+    })
+      .then(function(dbProjects) {
+        res.json(dbProjects);
+        console.log(dbProject);
+      })
+      .catch(function(err) {
+        res.json(err);
+        console.log(err);
+      });
+  });
+
   // DELETE route for removing a project
   app.delete("/deleteProject/:id", function(req, res) {
     db.Projects.destroy(req.body, {

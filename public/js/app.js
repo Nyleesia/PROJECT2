@@ -12,23 +12,13 @@ $(".openAttended").on("click", function() {
   $(".userProjectsPending").hide();
   console.log("hey");
 });
-$(".openProjects").on("click", function() {
-  $(".userHoursSpace").hide();
-  $(".userProjectsAttended").hide();
-  $(".userProjectsPending").show();
+
+$(".openProjects").on("click", function () {
+    $(".userHoursSpace").hide();
+    $(".userProjectsAttended").hide();
+    $(".userProjectsPending").show();
 });
-projects = [];
-if (projects.length === 0) {
-  var noProject = $("<div>").attr("class", "noProjectAppended");
-  var words =
-    "<h2>Your volunteer box is currently empty. Take a peek at the latest projects posted:   <a href='/projects'>HERE<a><h2>";
-  noProject.append(words);
-  $(".userProjectsPending").append(noProject);
-}
-// $.get("/profile").then(function(data) {
-//   console.log("Hello");
-//   //console.log(data);
-// });
+
 // var url =;
 // $.get(url).then(function(data){
 //     userData = data.user;
@@ -36,36 +26,16 @@ if (projects.length === 0) {
 //     $(".userEmail").text(userData.email);
 //     $("#userPhoto").attr("src", userData.image);
 // });
+
 // $.get(url).then(function(data){
-// var projectList = data.user.project;
-// for (var i =0; i < projectList.length; i++){
-//     var newProject =   '<div class="card" id="newProjectCard" style="width: 60rem; margin-left:18%;">'+
-//                         '<p class="card-text text-center"></p>'+
-//                         '<img id="imageProject" src="" class="card-img-top" alt="">'+
-//                         '<div class="card-body">'+
-//                         '<p class="detailsProject">Details:</p>'+
-//                         '</div>'+
-//                         '<ul class="list-group list-group-flush">'+
-//                         '<li class="list-group-item">Host:</li>'+
-//                         '</ul>'+
-//                         '<div class="card-body">'+
-//                         '<a href="" style="float:left;"></a>'+
-//                         '<div class="hours" style="width:75px; height:75px; float:right;"></div>'+'</div>'+'</div>';
-//     $(".userProjectsPending").prepend(newProject);
+//     var projectList = data.user.project;
+//     for (var i =0; i < projectList.length; i++){
+//         var newProject = $("<div>").attr("class", "projectArea");
 
-//     var newAttended =  '<div class="card" id="newAttendedCard" style="width: 60rem; margin-left:18%;">'+
-//                         '<p id="imageProject" class="card-text text-center"></p>'+
-//                         '<img src="" class="card-img-top" alt="">'+
-//                         '<div class="card-body">'+
-//                         '<p class="detailsAttended">Details:</p>'+
-//                         '</div>'+
-//                         '<ul class="list-group list-group-flush">'+
-//                         '<li class="list-group-item">Host:</li>'+
-//                         '</ul>'+
-//                         '<div class="card-body">'+
-//                         '<a href="" style="float:left;">link</a>'+
-//                         '<div class="hours" style="width:75px; height:75px; float:right;"></div>'+'</div>'+'</div>';
+//         $(".userProjectsPending").prepend(newProject);
 
-//     $(".userProjectsAttended").prepend(newAttended);
-// }
+//         var newAttended = $("<div>").attr("class", "attendedArea");
+
+//         $(".userProjectsAttended").prepend(newAttended);
+//     }
 // });
