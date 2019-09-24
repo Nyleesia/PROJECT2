@@ -1,13 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
   let BlogComments = sequelize.define("BlogComments", {
-    userName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        len: [1]
-      }
-    },
     comment: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -16,10 +8,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     likes: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    dislikes: {
       type: DataTypes.INTEGER,
       allowNull: true
     }
