@@ -87,6 +87,8 @@ textarea {
 .tabs {
     margin: 11px 0 0 70%;
     position: absolute;
+    font-family: moonsans; 
+    font-size: 17px;
     
 }
 .userProjectsAttended {
@@ -110,6 +112,11 @@ textarea {
    border-radius: 5px;
    cursor: pointer;
 }
+.openAttended:hover {
+    color:white;
+    width:90px;
+    height: 60px;
+}
 .openProjects {
    width: 80px;
    height: 50px;
@@ -119,6 +126,11 @@ textarea {
    text-align: center;
    border-radius: 5px;
    cursor: pointer;
+}
+.openProjects:hover {
+    color:white;
+    width:90px;
+    height: 60px;
 }
 .userProjectsAttended {
    background: rgb(156, 156, 156);
@@ -164,4 +176,68 @@ h2 {
     padding: 30px;
     text-align: center;
     font-family: moonsans;
+}
+#account {
+    font-family: moonsans; 
+    font-size: 25px; 
+    color: rgb(124,124,125);
+}
+#account:hover {
+    color: rgb(52,59,64);
+}
+.userName {
+    font-family: moonsans; 
+    font-size: 40px; 
+    color: white;
+}
+#disclaimerButton {
+    background:#ffffff;
+    color:blue;
+    border:none;
+}
+.dispara {
+    font-size: 12px;
+    padding:8px;
+    text-align:center;
+}
+#loginLogoImage {
+    width:750px; 
+    margin-left: 20%;
+}
+@media only screen and (max-width: 750px) {
+    .profilePic {
+       opacity: 0;
+    }
+    .tabs {
+        margin: 15px 0 0 50%;
+    }
+    .userName {
+        font-size: 30px;
+        padding: 30px;
+    }
+    .search {
+        float:none;
+    }
+    .modal-ku {
+        width: 750px;
+        margin: auto;
+      }
+      #loginLogoImage {
+        width:600px; 
+        margin-left: 0;
+      }
+}
+@media only screen and (max-width: 600px) {
+    .profilePic {
+       opacity: 0;
+    }
+    .tabs {
+        margin: -15px 0 0 50%;
+    }
+    .userName {
+        font-size: 30px;
+    }
+    .search {
+        float:none;
+    }
 }
