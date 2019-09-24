@@ -1,7 +1,7 @@
 </style>
 <!-- Navbar content -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light"
-    style="background-color: #e3f2fd; font-family: moonsans; font-size: 30px;">
+    style="background-color: #e3f2fd; font-family: moonsans; font-size: 25px;">
     <a class="navbar-brand" href="#">NiceCity</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,13 +27,12 @@
                 </div>
             </li>
         </ul>
-        <button type="button" class="btn btn-secondary" style="margin-left: 1058px;"><a class="nav-link"
-                href="/logout">Logout</a></button>
         {{!-- <form class="form-inline my-2 my-lg-0 search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="font-family: moonsans; font-size: 20px;">Search</button>
         </form> --}}
     </div>
+        <button type="button" class="btn btn-secondary" style="float:right;"><a class="nav-link" href="/logout">Logout</a></button>
 </nav>
 <!-- Banner At the Top -->
 <div class="banner">
@@ -44,15 +43,15 @@
     <img class="logo" src="images/finalnicecity.png">
     <div class="row">
         <div class="col-lg-12 userInformation">
-            <div class="userName" style="font-family: moonsans; font-size: 40px; color: white;">Welcome Back <span
-                    id="name" style="font-family: moonsans; font-size: 40px;">{{user.userName}}</span></div>
+            <div class="userName">Welcome Back <span
+                    id="name">{{user.userName}}</span></div>
             {{!-- <div class="userEmail" style="font-family: moonsans; font-size: 30px; color: white;">Email</div> --}}
         </div>
     </div>
     <div class="profileInfo"></div>
     <div class="tabs">
-        <div class="openAttended" style="font-family: moonsans; font-size: 17px;">Attended Projects</div>
-        <div class="openProjects" style="font-family: moonsans; font-size: 17px;">Upcoming Projects</div>
+        <div class="openAttended">Attended Projects</div>
+        <div class="openProjects">Upcoming Projects</div>
     </div>
 </div>
 <!-- Projects Attended -->

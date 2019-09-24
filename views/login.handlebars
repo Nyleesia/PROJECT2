@@ -8,8 +8,7 @@
     <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newUserForm" id="newUser"
         style="float: right; margin:5px; font-family: moonsans; font-size: 30px;">Create Account</button>
     <br>
-    <img src="https://user-images.githubusercontent.com/50628151/65193057-a5296f00-da47-11e9-98c0-999c8c2f781a.png"
-        style="width:750px; margin-left: 200px;">
+    <img id="loginLogoImage" src="https://user-images.githubusercontent.com/50628151/65193057-a5296f00-da47-11e9-98c0-999c8c2f781a.png">
 
     <p class="para" style="font-family: moonsans; font-size: 30px;">With NiceCity, you learn about the surroundings
         within your community. </p>
@@ -32,15 +31,15 @@
                     </div>
                     <form>
                         <div class="modal-body">
-                            
-                                <p style="font-family: moonsans; font-size: 30px;">Email:</p>
-                                <input name="username" id="sign_name"></input>
-                                <p style="font-family: moonsans; font-size: 30px;">Password:</p>
-                                <input  type="password" name="password" id="sign_pass"></input>
-                                <div class="login-error"></div>
-                                <br>
-                                <button id="signin" class="btn btn-secondary"
-                                    style="font-family: moonsans; font-size: 30px;">Submit</button>
+
+                            <p style="font-family: moonsans; font-size: 30px;">Email:</p>
+                            <input name="username" id="sign_name"></input>
+                            <p style="font-family: moonsans; font-size: 30px;">Password:</p>
+                            <input type="password" name="password" id="sign_pass"></input>
+                            <div class="login-error"></div>
+                            <br>
+                            <button id="signin" class="btn btn-secondary"
+                                style="font-family: moonsans; font-size: 30px;">Submit</button>
                         </div>
                     </form>
                     <div class="modal-footer">
@@ -76,17 +75,17 @@
                                 <input name="username" id="uname"></input>
                                 <span class="error-message"></span>
                             </div>
-                                <div class="signupuserEmail">
+                            <div class="signupuserEmail">
                                 <p style="font-family: moonsans; font-size: 30px;"> Email:</p>
                                 <input name="email" id="email"></input>
                                 <span class="error-message"></span>
                             </div>
-                                <div class="signuppassword">
+                            <div class="signuppassword">
                                 <p style="font-family: moonsans; font-size: 30px;"> Password:</p>
                                 <input type="password" name="password" id="pass"></input>
                                 <span class="error-message"></span>
                             </div>
-                                <div class="signupuserPhoto">
+                            <div class="signupuserPhoto">
                                 <p style="font-family: moonsans; font-size: 30px;"> Picture:</p>
                                 <input type="file" name="avatar" id="avatar"></input>
                                 <span class="error-message"></span>
@@ -95,8 +94,16 @@
                                 style="font-family: moonsans; font-size: 30px;">Submit</button>
                         </div>
                     </form>
+                        <button type="button" id="disclaimerButton" style="float:left;">Nicecity Service Disclaimer</button>
+                        <div class="row">
+                        <div class="col-lg-12" id="disclaimer"></div>
+                        </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="row">
+                            <div class="col-lg-12">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="float:right">Close</button>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
