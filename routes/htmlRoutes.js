@@ -1,5 +1,5 @@
 const express = require("express");
-
+const db = require("../models");
 const router = express.Router();
 
 const isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -26,7 +26,22 @@ router.get("/login", function(req, res) {
 // If a user who is not logged in tries to access this route they will be
 //redirected to the signup page
 router.get("/projects/:id?", isAuthenticated, function(req, res) {
-  res.render("projects", { user: req.user });
+  db.Project.findAll({
+    include: [
+      {
+        model: db.User,
+        where: {},
+        attributes: ["id", "username"],
+        as: "attendees"
+      }
+    ]
+  }).then(data => {
+    res.render("projects", {
+      user: req.user,
+      projects: data,
+      view: req.params.id || false
+    });
+  });
 });
 
 module.exports = router;
