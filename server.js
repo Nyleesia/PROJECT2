@@ -36,6 +36,7 @@ app.use(passport.session());
 const apiRoute = require("./routes/apiRoutes");
 const htmlRoute = require("./routes/htmlRoutes");
 const userRoute = require("./routes/userRoutes");
+require("./routes/apiProjectRoutes")(app);
 app.use("/api", apiRoute, userRoute);
 app.use("/", htmlRoute);
 
