@@ -33,17 +33,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Get Routes
-const apiRoute = require("./routes/apiRoutes");
+const apiLoginRoute = require("./routes/apiLoginRoutes");
 const htmlRoute = require("./routes/htmlRoutes");
-app.use("/api", apiRoute);
+const userRoute = require("./routes/apiUserRoutes");
+require("./routes/apiProjectRoutes")(app);
+app.use("/api", apiLoginRoute, userRoute);
 app.use("/", htmlRoute);
-
-//Api Routes
-require("./routes/apiBlogRoutes.js")(app);
-require("./routes/apiProjectRoutes.js")(app);
-require("./routes/apiProfileRoutes.js")(app);
-require("./routes/apiCommentRoutes.js")(app);
-require("./routes/apiBlogLikeRoutes.js")(app);
 
 // logout route defined by passport
 app.get("/logout", function(req, res) {

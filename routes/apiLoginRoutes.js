@@ -1,25 +1,50 @@
 const db = require("../models");
 const passport = require("../config/passport");
-const express = require("express");
-const router = express.Router();
+const multer = require("multer");
 
-router.post("/login", passport.authenticate("local"), function(req, res) {
-  res.json("/members");
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "public/uploads");
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + "-" + Date.now());
+  }
 });
 
-router.post("/signup", function(req, res) {
-  console.log(req.body);
-  db.User.create({
-    email: req.body.email,
-    password: req.body.password
-  })
-    .then(function() {
-      res.redirect(307, "/api/login");
+const upload = multer({ storage: storage });
+
+const express = require("express");
+
+const router = express.Router();
+
+router.post(
+  "/login",
+  upload.single("avatar"),
+  passport.authenticate("local"),
+  function(req, res) {
+    res.json("/profiles");
+  }
+);
+
+router.post("/signup", upload.single("avatar"), function(req, res) {
+  if (!req.file) {
+    return res.json({ errors: [{ message: "Must include image" }] });
+  } else {
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      userPhoto: req.file.path.replace("public", "")
     })
-    .catch(function(err) {
-      console.log(err);
-      res.json(err);
-    });
+      .then(function() {
+        res.redirect(307, "/api/login");
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  }
 });
 
 //
