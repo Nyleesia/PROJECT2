@@ -34,7 +34,7 @@
 <div class="container">
     <div class="row main-content-container justify-content-center">
         {{#if view}}
-        {{> singleProject projects=projects user=user}}
+        {{> singleProject projects=projects user=user id=view}}
         {{else}}
         {{> allProjects projects=projects user=user}}
         {{/if}}
