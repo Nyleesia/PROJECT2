@@ -34,9 +34,9 @@
 <div class="container">
     <div class="row main-content-container justify-content-center">
         {{#if view}}
-            {{> singleProject }}
+        {{> singleProject }}
         {{else}}
-            {{> allProjects projects=projects user=user}}
+        {{> allProjects projects=projects user=user}}
         {{/if}}
         <!-- Modal -->
         <div class="modal fade" id="postEvent" role="dialog">
@@ -47,36 +47,40 @@
                         <h4 class="modal-title" style="font-family: moonsans; font-size: 30px;">Volunteer Request Form
                         </h4>
                     </div>
-                    <form method="POST" action="/api/newProject">
+                    <form>
                         <div class="modal-body">
                             <p>
-                                <p style="font-family: moonsans; font-size: 30px;">Description:</p>
-                                <input type="text" id="locatity" name="event_location">
+                                <p style="font-family: moonsans; font-size: 30px;">Title:</p>
+                                <input type="text" id="projTitle" name="title">
                                 <br>
                                 <br>
-                                <p style="font-family: moonsans; font-size: 30px;">(Optional) Event Photo:</p>
-                                <input type="text" id="locatity" name="event_photo">
+                                <p style="font-family: moonsans; font-size: 30px;">(Optional) Event Photo URL:</p>
+                                <input type="text" id="urlPhoto" name="photo">
                                 <br>
                                 <br>
-                                <p style="font-family: moonsans; font-size: 30px;">Enter Date and Time of Event:</p>
-                                <input type="datetime-local" id="eventDate" name="event_date">
+                                <p style="font-family: moonsans; font-size: 30px;">Enter Date:</p>
+                                <input type="date" id="projDate" name="eventDate">
+                                <br>
+                                <br>
+                                <p style="font-family: moonsans; font-size: 30px;">Enter Time:</p>
+                                <input type="time" id="projTime" name="eventTime">
                                 <br>
                                 <br>
                                 <p style="font-family: moonsans; font-size: 30px;">Enter Number of Volunteers Needed:
                                 </p>
-                                <input type="number" id="capacity" name="event_capacity">
+                                <input type="number" id="capacity" min="0" name="capacity">
                                 <br>
                                 <br>
                                 <p style="font-family: moonsans; font-size: 30px;"> Detail of Event:</p>
-                                <textarea class="eventDetails" name="event_details">
+                                <textarea class="eventDetails" name="description">
                                 </textarea>
                                 <br>
                                 <br>
                                 <p style="font-family: moonsans; font-size: 30px;">Link:</p>
-                                <input type="text" id="locatity" name="event_link">
+                                <input type="text" id="urlLink" name="link">
                                 <br>
                                 <br>
-                                <button type="submit" class="event_form; btn btn-secondary"
+                                <button type="submit" class="event_form; btn btn-secondary" id="projSubmit"
                                     style="font-family: moonsans; font-size: 18px;">Submit Event</button>
                             </p>
                         </div>
@@ -90,7 +94,24 @@
     </div>
 </div>
 <script>
-    $.get("/api/allProjects").then(function (data) {
-        console.log(data);
+    $("#projSubmit").on("click", function () {
+        var title = $("#projTitle").val();
+        var urlPhoto = $("#urlPhoto").val();
+        var projDate = $("#projDate").val();
+        var projTime = $("#projTime")
+        var cap = $("#capacity").val();
+        var detail = $(".eventDetails").val();
+        var url = $("#urlLink").val();
+        $.post("/api/newProject", function (results) {
+            var newProject = {
+                title: title,
+                photo: urlPhoto,
+                eventDate: projDate,
+                eventTime: projTime,
+                capacity: cap,
+                description: detail,
+                link: url
+            }
+        });
     });
 </script>
