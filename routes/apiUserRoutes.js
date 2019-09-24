@@ -1,39 +1,19 @@
-const db = require("../models");
-const express = require("express");
-const router = new express.Router();
+// const db = require("../models");
 
-router.post("/user/updatePhoto", function(req, res) {
-  console.log(req.body);
-  if (!req.body.userPhoto) {
-    return res.json({ err: "no photo provided" });
-  } else if (!req.body.email) {
-    return res.json({ err: "no user specified" });
-  }
-  db.User.update(
-    { userPhoto: req.body.userPhoto },
-    { where: { email: req.body.email } }
-  )
-    .then(() => {
-      req.user.userPhoto = req.body.userPhoto;
-      return res.redirect("/");
-    })
-    .catch(err => res.json(err));
-});
-
-router.post("/user/updateName", function(req, res) {
-  console.log(req.body);
-  if (!req.body.lastName || !req.body.lastName) {
-    return res.json({ err: "Please specify both first and last name" });
-  }
-  db.User.update(
-    { firstName: req.body.firstName },
-    { lastName: req.body.lastName },
-    { where: { email: req.body.userEmail } }
-  )
-    .then(data => {
-      return res.json(data);
-    })
-    .catch(err => res.json(err));
-});
-
-module.exports = router;
+// module.exports = function(app) {
+//   // Find a post by the userName of the user who created that post
+//   app.get("/api/Post/:userName", function(req, res) {
+//     db.User.findAll({
+//       include: [db.User],
+//       where: {
+//         userName: req.params.userName
+//       }
+//     })
+//       .then(function(dbUser) {
+//         res.json(dbUser);
+//       })
+//       .catch(function(err) {
+//         res.json(err);
+//       });
+//   });
+// };

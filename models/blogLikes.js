@@ -1,18 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
-  let BlogComments = sequelize.define("BlogComments", {
-    userName: {
-      type: DataTypes.STRING,
+  let BlogLikes = sequelize.define("BlogLikes", {
+    blogId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
       validate: {
         len: [1]
       }
     },
-    comment: {
+    userName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 150]
+        len: [1]
       }
     },
     likes: {
@@ -21,15 +20,21 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  BlogComments.associate = function(models) {
+  BlogLikes.associate = function(models) {
     //Foreign key prevents projects from started made without a user
-    BlogComments.belongsTo(models.User, {
-      as: "commenter",
+    BlogLikes.belongsTo(models.User, {
+      as: "likers",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+    BlogLikes.belongsTo(models.BlogPost, {
+      as: "blogLikes",
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-  return BlogComments;
+  return BlogLikes;
 };
