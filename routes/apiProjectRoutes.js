@@ -151,6 +151,7 @@ module.exports = function(app) {
       .then(function(dbProject) {
         res.json(dbProject);
         console.log(dbProject);
+        res.redirect("/projects");
       })
       .catch(function(err) {
         res.json(err);

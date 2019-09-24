@@ -12,11 +12,14 @@ $(".openAttended").on("click", function() {
   $(".userProjectsPending").hide();
   console.log("hey");
 });
+
 $(".openProjects").on("click", function() {
   $(".userHoursSpace").hide();
   $(".userProjectsAttended").hide();
   $(".userProjectsPending").show();
 });
+
+// Profile Page - if div for activities empty...
 projects = [];
 if (projects.length === 0) {
   var noProject = $("<div>").attr("class", "noProjectAppended");
@@ -25,6 +28,12 @@ if (projects.length === 0) {
   noProject.append(words);
   $(".userProjectsPending").append(noProject);
 }
+
+//Project Page - do not allow user to give negative number volunteers
+// var cap = $("#capacity").val();
+// if (cap <= 0){
+//   $("#capacity").val("0");
+// }
 // $.get("/profile").then(function(data) {
 //   console.log("Hello");
 //   //console.log(data);
