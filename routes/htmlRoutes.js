@@ -35,7 +35,6 @@ router.get("/projects/:id?", isAuthenticated, function(req, res) {
       }
     ]
   }).then(data => {
-    console.log(data);
     res.render("projects", {
       user: req.user,
       projects: data,
