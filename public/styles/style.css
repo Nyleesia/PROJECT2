@@ -2,8 +2,6 @@
     font-family: moonsans;
     src: url(212\ Moon\ Child\ Sans.otf);
    }
-
-
 body {
     background: url("https://static.bhphoto.com/images/images500x500/1157995641_45637.jpg");
     background-size: 100vw;
@@ -94,10 +92,19 @@ textarea {
 .userProjectsAttended {
     position: absolute;
     z-index: 2;
+    font-family: moonsans;
+    padding:5px;
+    position: absolute;
+    overflow: auto;
+
 }
 .userProjectsPending {
     position: absolute;
     z-index: 2;
+    font-family: moonsans;
+    padding:5px;
+    position: absolute;
+    overflow:auto;
 }
 .userName {
     padding-top: 50px;
@@ -195,6 +202,11 @@ h2 {
     color:blue;
     border:none;
 }
+#imageProject {
+    max-width: 400px;
+    max-height: 400px;
+    margin-left: 17%;
+}
 .dispara {
     font-size: 12px;
     padding:8px;
@@ -203,6 +215,20 @@ h2 {
 #loginLogoImage {
     width:750px; 
     margin-left: 20%;
+}
+.card {
+    width:70%;
+    margin-left:15%;
+    padding:5px;
+    margin-top:10px;
+}
+.card-text {
+    font-style: italic;
+    font-family: moonsans;
+    font-size:25px;
+}
+.detailsProject {
+    font-size: 15px;
 }
 @media only screen and (max-width: 750px) {
     .profilePic {
@@ -226,6 +252,7 @@ h2 {
         width:600px; 
         margin-left: 0;
       }
+      
 }
 @media only screen and (max-width: 600px) {
     .profilePic {

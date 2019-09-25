@@ -1,33 +1,26 @@
 <div class="container">
   <div class="card" style="width: 100rem; padding: 50px; margin: 50px; font-family: moonsans; font-size: 25px;">
-  <h1 class="card-title" id="eventTitle">Event Name</h1> <br>
-  <img id="eventPhoto" class="card-img-top" alt="..."> <br>
-  <div class="card-body">
-    
-    <p class="card-text" id="eventDescription">Some detail about the event goes here. blah
-      blah blah blah
-    </p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Date: <span id="eventDate"></span></li>
-    <li class="list-group-item">Time: <span id="eventTime"></span></li>
-    <li class="list-group-item"># of volunteers wanted: <span id="eventVol"></span></li>
-    <li class="list-group-item">Atendees:
-      <div id="eventAttendees"></div>
-    </li>
-    <li class="list-group-item" id="eventCompleted">Completion Satus: <span id="eventAttendees"></span></li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Event Webpage</a>
-    <button id="eventJoin">Join Project</button>
+    <h1 class="card-title title"></h1> <br>
+    <img src="" class="card-img-top cardImg" alt="..."> <br>
+    <div class="card-body">
+      <p class="card-text details"></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Date: <span class="date"></span></li>
+      <li class="list-group-item">Time: <span class="time"></span></li>
+      <li class="list-group-item">No. of Volunteers Needed: <span class="volunteers"></span></li>
+      <li class="list-group-item">Attendees: <span class="attendees"></span></li>
+      <li class="list-group-item"> This project is <span class="completed"></span></li>
+    </ul>
+    <div class="card-body">
+      <a href="" class="card-link link" target="_blank">Visit the Project's Homepage</a>
+      <a href="/projects" style="float:right;">View all Projects</a>
+    </div>
   </div>
 </div>
-
-</div>
-
-
 <script>
-  $.get("/api/projectsId/{{view}}", function(data){
+
+  $.get("/api/projectsId/{{view}}", function (data) {
     console.log(data)
     if(data){
       data = data[0];
@@ -38,8 +31,37 @@
       }
       $("#eventTitle").html(data.title);
       $("#eventDescription").html(data.description);
-      $("#eventDate").html(data.eventDate);
-      $("#eventTime").html(data.eventTime);
+      
+      
+      let dateSplit = info.eventDate.split("-");
+      
+      for (j = 0; j < dateSplit.length; j++) {
+        month = dateSplit[1];
+        day = dateSplit[2];
+        year = dateSplit[0];
+      }
+      
+      $("#eventDate").html(month+"/"+day+"/"+year);
+      
+      
+      let time = data.eventTime.split(':'); // convert to array
+      var hours = Number(time[0]);
+      var minutes = Number(time[1]);
+      var seconds = Number(time[2]);
+      // calculate
+      var timeValue;
+      if (hours > 0 && hours <= 12) {
+        timeValue = "" + hours;
+      } else if (hours > 12) {
+        timeValue = "" + (hours - 12);
+      } else if (hours == 0) {
+        timeValue = "12";
+      }
+      timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+      timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+      
+      
+      $("#eventTime").html(time);
       $("#eventVol").html(data.capacity);
       addAttendees(data.attendees);
       $("#eventCompleted").html(`${data.completed}`);
@@ -54,7 +76,7 @@
       {userName: "john", id: "2000"},
       {userName: "bob", id: "300"},
     ];
-    console.log(list)
+    
     let currentUser = "{{user.id}}";
     let target = $("#eventAttendees")
     list.forEach(function(attendee){

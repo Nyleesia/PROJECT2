@@ -9,14 +9,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#" style= "color: grey; ">Account <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" style="color: grey; ">Account <span class="sr-only">(current)</span></a>
 
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/projects">Projects<span class="sr-only">(current)</span></a>
 
             </li>
-        {{!-- <form class="form-inline my-2 my-lg-0 search">
+            {{!-- <form class="form-inline my-2 my-lg-0 search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="font-family: moonsans; font-size: 20px;">Search</button>
         </form> --}}
@@ -71,59 +71,14 @@
     </div>
 </div>
 <script>
-    $.get("/api/completedProjects").then(function (data) {
-        console.log(data)
-        if (data.length === 0) {
-            var noProject = $("<div>").attr("class", "noProjectAppended");
-            var words =
-                "<h2>Your volunteer box is currently empty. Take a peek at the latest projects posted:   <a href='/projects'>HERE<a><h2>";
-            noProject.append(words);
-            $(".userProjectsPending").append(noProject);
-        } else {
-            for (var i = 0; i < data.length; i++) {
-                var month;
-                var day;
-                var year;
-                var dateSplit = data[i].eventDate.split("-");
-                console.log(dateSplit);
-                for (j = 0; j < dateSplit.length; j++) {
-                    month = dateSplit[1];
-                    day = dateSplit[2];
-                    year = dateSplit[0];
-                }
-
-                time = data[i].eventTime.split(':'); // convert to array
-                var hours = Number(time[0]);
-                var minutes = Number(time[1]);
-                var seconds = Number(time[2]);
-                // calculate
-                var timeValue;
-                if (hours > 0 && hours <= 12) {
-                    timeValue = "" + hours;
-                } else if (hours > 12) {
-                    timeValue = "" + (hours - 12);
-                } else if (hours == 0) {
-                    timeValue = "12";
-                }
-                timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-                timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
-
-                // send this data back
-                var newProject = '<div class="card" id="newProjectCard" style="width: 60rem; margin-left:18%;">' +
-                    '<p class="card-text text-center">' + data[i].title + '</p>' +
-                    '<img id="imageProject" src="' + data[i].photo + '" class="card-img-top" alt="">' +
-                    '<div class="card-body">' +
-                    '<p class="detailsProject">Details:' + data[i].description + '</p>' +
-                    '</div>' +
-                    '<ul class="list-group list-group-flush">' +
-                    '<li class="list-group-item">Host: {{user.userName}} </li>' +
-                    '</ul>' +
-                    '<div class="card-body">' +
-                    '<a href="' + data[i].link + '" style="float:left;">' + data[i].link + '</a>' +
-                    '<div class="hours" style="width:120px; height:75px; float:right;">Date:' + month + '/' + day + '/' + year + ', Time:' + timeValue + '</div>' + '</div>' + '</div>';
-                $(".userProjectsPending").prepend(newProject);
-            }
-        }
+    // Javascript for tabs on Profile Page
+    $(".openAttended").on("click", function () {
+        $(".userProjectsAttended").show();
+        $(".userProjectsPending").hide();
+    });
+    $(".openProjects").on("click", function () {
+        $(".userProjectsAttended").hide();
+        $(".userProjectsPending").show();
     });
     $.get("/api/incompletedProjects").then(function (data) {
         console.log(data)
@@ -139,7 +94,6 @@
                 var day;
                 var year;
                 var dateSplit = data[i].eventDate.split("-");
-                console.log(dateSplit);
                 for (j = 0; j < dateSplit.length; j++) {
                     month = dateSplit[1];
                     day = dateSplit[2];
@@ -163,7 +117,7 @@
                 timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
 
                 // send this data back
-                var newProject = '<div class="card" id="newProjectCard" style="width: 60rem; margin-left:18%;">' +
+                var newProject = '<div class="card" id="newProjectCard">' +
                     '<p class="card-text text-center">' + data[i].title + '</p>' +
                     '<img id="imageProject" src="' + data[i].photo + '" class="card-img-top" alt="">' +
                     '<div class="card-body">' +
@@ -174,13 +128,11 @@
                     '</ul>' +
                     '<div class="card-body">' +
                     '<a href="' + data[i].link + '" style="float:left;">' + data[i].link + '</a>' +
-                    '<div class="hours" style="width:120px; height:75px; float:right;">Date:' + month + '/' + day + '/' + year + ', Time:' + timeValue + '</div>' + '</div>' + '</div>' +
-                    `<button data-id="${data[i].id}" class="completedProj">Project Completed</button><button id="deleteProj">Delete Project</button>`;
+                    '<div class="hours" style="width:120px; height:75px; float:right;">Date:' + month + '/' + day + '/' + year + ', Time:' + timeValue + '</div>' + '</div>' +
+                    `<button data-id="${data[i].id}" class="completedProj">Project Completed</button><button class="deleteProj">Delete Project</button>'</div>'`;
                 $(".userProjectsPending").prepend(newProject);
             }
             $(".completedProj").on("click", function (e) {
-                console.log($(e.target).data())
-                console.log("Hello you!")
                 $.ajax({
                     url: "/api/updateProject",
                     type: "PUT",
@@ -189,9 +141,73 @@
                         completed: true
                     }
                 }).done(function (data) {
-                    console.log(data)
                 });
             });
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].id)
+                $(".deleteProj").on("click", function (e) {
+                    $.ajax({
+                        url: "/api/deleteProject/" + data[i].id,
+                        type: "DELETE",
+                        data: {
+                            id: $(e.target).data().id,
+                        }
+                    }).done(function (data) {
+                    });
+                });
+            }
+        }
+    });
+    $.get("/api/completedProjects").then(function (data) {
+        if (data.length === "") {
+            var noProject = $("<div>").attr("class", "noProjectAppended");
+            var words =
+                "<h2>Your volunteer box is currently empty. Take a peek at the latest projects posted:   <a href='/projects'>HERE<a><h2>";
+            noProject.append(words);
+            $(".userProjectsAttended").append(noProject);
+        } else {
+            for (var i = 0; i < data.length; i++) {
+                var month;
+                var day;
+                var year;
+                var dateSplit = data[i].eventDate.split("-");
+                for (j = 0; j < dateSplit.length; j++) {
+                    month = dateSplit[1];
+                    day = dateSplit[2];
+                    year = dateSplit[0];
+                }
+
+                time = data[i].eventTime.split(':'); // convert to array
+                var hours = Number(time[0]);
+                var minutes = Number(time[1]);
+                var seconds = Number(time[2]);
+                // calculate
+                var timeValue;
+                if (hours > 0 && hours <= 12) {
+                    timeValue = "" + hours;
+                } else if (hours > 12) {
+                    timeValue = "" + (hours - 12);
+                } else if (hours == 0) {
+                    timeValue = "12";
+                }
+                timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+                timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+
+                // send this data back
+                var newProject = '<div class="card" id="newProjectCard">' +
+                    '<p class="card-text text-center">' + data[i].title + '</p>' +
+                    '<img id="imageProject" src="' + data[i].photo + '" class="card-img-top" alt="">' +
+                    '<div class="card-body">' +
+                    '<p class="detailsProject">Details:' + data[i].description + '</p>' +
+                    '</div>' +
+                    '<ul class="list-group list-group-flush">' +
+                    '<li class="list-group-item">Host: {{user.userName}} </li>' +
+                    '</ul>' +
+                    '<div class="card-body">' +
+                    '<a href="' + data[i].link + '" style="float:left;">' + data[i].link + '</a>' +
+                    '<div class="hours" style="font-size:15px;width:120px; height:75px; float:right;">Date:<br>' + month + '/' + day + '/' + year + '<br>Time:<br>' + timeValue + '</div>' + '</div>' + '</div>';
+                $(".userProjectsAttended").prepend(newProject);
+            }
         }
     });
 </script>
