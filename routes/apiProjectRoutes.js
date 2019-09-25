@@ -105,13 +105,7 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       },
-      include: [
-        {
-          model: db.User,
-          attributes: ["id", "username"],
-          as: "attendees"
-        }
-      ]
+      include: [db.User]
     })
       .then(function(dbProject) {
         res.json(dbProject);
@@ -150,8 +144,9 @@ module.exports = function(app) {
   });
 
   // PUT route for updating a project
-  app.put("/updateProject", function(req, res) {
-    db.Projects.update(req.body, {
+  app.put("/api/updateProject", function(req, res) {
+    db.Project.update(req.body, {
+      completed: req.body.completed,
       where: {
         id: req.body.id
       },
