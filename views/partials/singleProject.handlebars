@@ -1,25 +1,27 @@
 <div class="container">
   <div class="card" style="width: 100rem; padding: 50px; margin: 50px; font-family: moonsans; font-size: 25px;">
-  <h1 class="card-title">Event Name</h1> <br>
-  <img src="http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png" class="card-img-top" alt="..."> <br>
+  <h1 class="card-title" id="eventTitle">Event Name</h1> <br>
+  <img id="eventPhoto" class="card-img-top" alt="..."> <br>
   <div class="card-body">
     
-    <p class="card-text">Some detail about the event goes here. blah
+    <p class="card-text" id="eventDescription">Some detail about the event goes here. blah
       blah blah blah
     </p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Date</li>
-    <li class="list-group-item">Time</li>
-    <li class="list-group-item"># of volunteers wanted</li>
-    <li class="list-group-item">Atendees</li>
-    <li class="list-group-item">Completion Satus</li>
+    <li class="list-group-item">Date: <span id="eventDate"></span></li>
+    <li class="list-group-item">Time: <span id="eventTime"></span></li>
+    <li class="list-group-item"># of volunteers wanted: <span id="eventVol"></span></li>
+    <li class="list-group-item">Atendees:
+      <div id="eventAttendees"></div>
+    </li>
+    <li class="list-group-item" id="eventCompleted">Completion Satus: <span id="eventAttendees"></span></li>
   </ul>
   <div class="card-body">
     <a href="#" class="card-link">Event Webpage</a>
+    <button id="eventJoin">Join Project</button>
   </div>
 </div>
-
 
 </div>
 
@@ -27,5 +29,60 @@
 <script>
   $.get("/api/projectsId/{{view}}", function(data){
     console.log(data)
+    if(data){
+      data = data[0];
+      if(data.photo && /(avatar|.(png|gif|jpg$))/.test(data.photo)){
+        $("#eventPhoto").attr("src", data.photo);
+      }else{
+        $("#eventPhoto").attr("src", "http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png")
+      }
+      $("#eventTitle").html(data.title);
+      $("#eventDescription").html(data.description);
+      $("#eventDate").html(data.eventDate);
+      $("#eventTime").html(data.eventTime);
+      $("#eventVol").html(data.capacity);
+      addAttendees(data.attendees);
+      $("#eventCompleted").html(`${data.completed}`);
+    }
+  });
+
+
+  function addAttendees(list){
+    let total = "";
+    list = [
+      {userName: "{{user.userName}}", id: "{{user.id}}"},
+      {userName: "john", id: "2000"},
+      {userName: "bob", id: "300"},
+    ];
+    console.log(list)
+    let currentUser = "{{user.id}}";
+    let target = $("#eventAttendees")
+    list.forEach(function(attendee){
+      if(attendee.id === currentUser){
+        //user is in group
+        removeJoin();
+        total += 
+        `<div>
+          <p>${attendee.userName}  <button class="removeme">Leave</button></p>
+        </div>`;
+      } else {
+        total += `<div><p>${attendee.userName}<p></div>`;
+      }
+    })
+
+    target.html(total);
+  }
+
+  function removeJoin(){
+    //$("#eventJoin").hide();
+  }
+
+  $('body').on('click', '#eventJoin', function () {
+     // handle adding user to project
+  });
+
+
+  $('body').on('click', '.removeme', function () {
+     // handle removing user from project
   });
 </script>
