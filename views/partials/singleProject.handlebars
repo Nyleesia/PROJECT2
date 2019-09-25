@@ -9,12 +9,14 @@
       <li class="list-group-item">Date: <span id="eventDate"></span></li>
       <li class="list-group-item">Time: <span id="eventTime"></span></li>
       <li class="list-group-item">No. of Volunteers Needed: <span id="eventVol"></span></li>
-      <li class="list-group-item">Attendees: <div id="eventAttendees"></div></li>
+      <li class="list-group-item">Attendees: <div id="eventAttendees"></div>
+      </li>
       <li class="list-group-item"> This project is <span id="eventCompleted"></span></li>
     </ul>
     <div class="card-body">
       <a href="" class="card-link link" target="_blank">Visit the Project's Homepage</a>
       <a href="/projects" style="float:right;">View all Projects</a>
+      <button id="eventJoin">Join Project</button>
     </div>
   </div>
 </div>
@@ -22,28 +24,28 @@
 
   $.get("/api/projectsId/{{view}}", function (data) {
     console.log(data)
-    if(data){
+    if (data) {
       data = data[0];
-      if(data.photo && /(avatar|.(png|gif|jpg$))/.test(data.photo)){
+      if (data.photo && /(avatar|.(png|gif|jpg$))/.test(data.photo)) {
         $("#eventPhoto").attr("src", data.photo);
-      }else{
+      } else {
         $("#eventPhoto").attr("src", "http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png")
       }
       $("#eventTitle").html(data.title);
       $("#eventDescription").html(data.description);
-      
-      
+
+
       let dateSplit = data.eventDate.split("-");
-      
+
       for (j = 0; j < dateSplit.length; j++) {
         month = dateSplit[1];
         day = dateSplit[2];
         year = dateSplit[0];
       }
-      
-      $("#eventDate").html(month+"/"+day+"/"+year);
-      
-      
+
+      $("#eventDate").html(month + "/" + day + "/" + year);
+
+
       let time = data.eventTime.split(':'); // convert to array
       var hours = Number(time[0]);
       var minutes = Number(time[1]);
@@ -59,52 +61,95 @@
       }
       timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
       timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
-      
-      
+
       $("#eventTime").html(time);
       $("#eventVol").html(data.capacity);
-      addAttendees(data.attendees);
-      $("#eventCompleted").html(data.completed? 'Completed': 'Incomplete');
+      addAttendees(data.attendees, data.UserId);
+      $("#eventCompleted").html(data.completed ? 'Completed' : 'Incomplete');
     }
   });
 
 
-  function addAttendees(list){
-    let total = "";
-    list = [
-      {userName: "{{user.userName}}", id: "{{user.id}}"},
-      {userName: "john", id: "2000"},
-      {userName: "bob", id: "300"},
-    ];
-    
+  function addAttendees(list, projectOwnerId) {
     let currentUser = "{{user.id}}";
-    let target = $("#eventAttendees")
-    list.forEach(function(attendee){
-      if(attendee.id === currentUser){
-        //user is in group
-        removeJoin();
-        total += 
-        `<div>
-          <p>${attendee.userName}  <button class="removeme">Leave</button></p>
+    let target = $("#eventAttendees");
+    let total = "";
+    console.log(currentUser, projectOwnerId)
+    if (currentUser == projectOwnerId) {
+      handleAdminView();
+      removeJoin();
+      list.forEach(function (attendee) {
+        total +=
+          `<div>
+              <p>${attendee.username}  <button class="removeUser" data-id="${attendee.ProjectParticipant.UserId}">Remove User</button></p>
+            </div>`;
+      })
+    } else {
+      list.forEach(function (attendee) {
+        console.log(attendee.ProjectParticipant.UserId)
+        if (attendee.ProjectParticipant.UserId == currentUser) {
+          //user is in group
+          removeJoin();
+          total +=
+            `<div>
+          <p>${attendee.username}  <button class="removeMe" data-id="${attendee.ProjectParticipant.UserId}">Leave</button></p>
         </div>`;
-      } else {
-        total += `<div><p>${attendee.userName}<p></div>`;
-      }
-    })
-
+        } else {
+          total += `<div><p>${attendee.username}<p></div>`;
+        }
+      })
+    }
     target.html(total);
   }
 
-  function removeJoin(){
-    //$("#eventJoin").hide();
+  function handleAdminView() {
+
   }
 
-  $('body').on('click', '#eventJoin', function () {
-     // handle adding user to project
+  function removeJoin() {
+    $("#eventJoin").hide();
+  }
+
+  $('body').on('click', '#eventJoin', function (e) {
+    // handle adding user to project
+    $.ajax({
+      url: "/api/addParticipant",
+      type: "POST",
+      data: {
+        UserId: "{{user.id}}",
+        ProjectId: "{{view}}"
+      }
+    }).done(data => {
+      location.reload();
+    })
   });
 
 
-  $('body').on('click', '.removeme', function () {
-     // handle removing user from project
+  $('body').on('click', '.removeMe', function (e) {
+    // handle removing user from project
+    $.ajax({
+      url: "/api/removeParticipant",
+      type: "DELETE",
+      data: {
+        UserId: "{{user.id}}",
+        ProjectId: "{{view}}"
+      }
+    }).done(data => {
+      location.reload();
+    })
+  });
+
+  $('body').on('click', '.removeUser', function (e) {
+    // handle removing user from project
+    $.ajax({
+      url: "/api/removeParticipant",
+      type: "DELETE",
+      data: {
+        UserId: $(e.target).data().id,
+        ProjectId: "{{view}}"
+      }
+    }).done(data => {
+      location.reload();
+    })
   });
 </script>
