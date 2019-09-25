@@ -105,7 +105,13 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       },
-      include: [db.User]
+      include: [
+        {
+          model: db.User,
+          attributes: ["id", "username"],
+          as: "attendees"
+        }
+      ]
     })
       .then(function(dbProject) {
         res.json(dbProject);
