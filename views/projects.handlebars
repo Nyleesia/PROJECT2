@@ -41,7 +41,6 @@
                     </div>
                     <form>
                         <div class="modal-body">
-                            <p>
                                 <p style="font-family: moonsans; font-size: 30px;">Title:</p>
                                 <input type="text" id="projTitle" name="title">
                                 <br>
@@ -64,7 +63,7 @@
                                 <br>
                                 <br>
                                 <p style="font-family: moonsans; font-size: 30px;"> Detail of Event:</p>
-                                <textarea class="eventDetails" name="description">
+                                <textarea id="eventDetails" name="description">
                                 </textarea>
                                 <br>
                                 <br>
@@ -74,7 +73,7 @@
                                 <br>
                                 <button type="submit" class="event_form; btn btn-secondary" id="projSubmit"
                                     style="font-family: moonsans; font-size: 18px;">Submit Event</button>
-                            </p>
+                                <div id="projectError"></div>
                         </div>
                     </form>
                     <div class="modal-footer">
@@ -95,33 +94,4 @@
 </a>
 {{/unless}}
 
-<script>
-    $("#projSubmit").on("click", function (e) {
-        e.preventDefault();
-        var title = $("#projTitle").val();
-        var urlPhoto = $("#urlPhoto").val();
-        if (urlPhoto === ""){
-            urlPhoto = "http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png";
-        }
-        var projDate = $("#projDate").val();
-        var projTime = $("#projTime").val();
-        var cap = $("#capacity").val();
-        var detail = $(".eventDetails").val();
-        var url = $("#urlLink").val();
-
-        $.post("/api/newProject",
-            {
-                title: title,
-                photo: urlPhoto,
-                eventDate: projDate,
-                eventTime: projTime,
-                capacity: cap,
-                description: detail,
-                link: url
-            },
-            function (results) {
-                window.location.href = "projects/"+results.id;
-                console.log(results)
-            });
-    });
-</script>
+<script src="/js/submitHandler.js"></script>
