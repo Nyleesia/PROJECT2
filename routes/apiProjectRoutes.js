@@ -99,6 +99,54 @@ module.exports = function(app) {
       });
   });
 
+  app.get("/api/attendedProjects/:id", function(req, res) {
+    db.Project.findAll({
+      where: { completed: true },
+      include: [
+        {
+          model: db.User,
+          where: {
+            id: req.params.id
+          },
+          attributes: ["id", "username"],
+          as: "attendees"
+        }
+      ]
+    })
+      .then(function(dbProject) {
+        res.json(dbProject);
+        console.log(dbProject);
+      })
+      .catch(function(err) {
+        res.json(err);
+        console.log(err);
+      });
+  });
+
+  app.get("/api/attendingProjects/:id", function(req, res) {
+    db.Project.findAll({
+      where: { completed: false },
+      include: [
+        {
+          model: db.User,
+          where: {
+            id: req.params.id
+          },
+          attributes: ["id", "username"],
+          as: "attendees"
+        }
+      ]
+    })
+      .then(function(dbProject) {
+        res.json(dbProject);
+        console.log(dbProject);
+      })
+      .catch(function(err) {
+        res.json(err);
+        console.log(err);
+      });
+  });
+
   // GET route for finding projects by the id of a project
   app.get("/api/projectsId/:id", function(req, res) {
     db.Project.findAll({
