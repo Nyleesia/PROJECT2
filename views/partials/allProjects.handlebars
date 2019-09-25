@@ -1,19 +1,18 @@
 
 {{#each projects}}
-<div class="card" style="width: 48rem; padding: 22px; margin: 15px;">
+<div class="card {{#if this.completed}} completedCard {{/if}}" style="width: 48rem; padding: 22px; margin: 15px; ">
   <img src="{{{this.dataValues.photo}}}"
     class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">{{this.dataValues.title}}</h5>
-    <p class="card-text">
+    <h5 class="card-title" style="font-family: moonsans; font-size: 25px;">{{this.dataValues.title}}</h5>
+    <p class="card-text" style="font-family: moonsans; font-size: 25px;">
       {{this.dataValues.description}}
     </p>
   </div>
-  <p>{{this.dataValues.eventTime}}</p>
-  <p>{{this.dataValues.eventDate}}</p>
-  <a href="#" class="btn btn-dark">RSVP</a>
+  <p style="font-family: moonsans; font-size: 25px;">{{this.dataValues.eventTime}}</p>
+  <p style="font-family: moonsans; font-size: 25px;">{{this.dataValues.eventDate}}</p>
   <div class="card-body">
-    <a href="projects/{{this.dataValues.id}}" class="card-link"><strong>View Event
+    <a href="projects/{{this.dataValues.id}}" class="card-link" style= "font-family: moonsans; font-size: 25px;""><strong>View Event
         Details</strong></a>
   </div>
 </div>

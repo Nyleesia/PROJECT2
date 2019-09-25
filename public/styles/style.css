@@ -316,3 +316,7 @@ body{
 .my-float{
 	margin-top:22px;
 }
+
+.completedCard {
+    background-color: rgb(168, 167, 167);
+}
