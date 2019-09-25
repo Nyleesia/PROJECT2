@@ -99,6 +99,27 @@ module.exports = function(app) {
       });
   });
 
+  app.get("/api/projectByUser/:id", function(req, res) {
+    db.Project.findAll({
+      where: { UserId: req.params.id },
+      include: [
+        {
+          model: db.User,
+          attributes: ["id", "username"],
+          as: "attendees"
+        }
+      ]
+    })
+      .then(function(dbProject) {
+        res.json(dbProject);
+        console.log(dbProject);
+      })
+      .catch(function(err) {
+        res.json(err);
+        console.log(err);
+      });
+  });
+
   app.get("/api/attendedProjects/:id", function(req, res) {
     db.Project.findAll({
       where: { completed: true },
