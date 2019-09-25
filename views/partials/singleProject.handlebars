@@ -14,7 +14,7 @@
       <li class="list-group-item"> This project is <span id="eventCompleted"></span></li>
     </ul>
     <div class="card-body">
-      <ul><a href="" class="card-link link" target="_blank">Visit the Project's Homepage</a></ul>
+      <ul><a href="" id="projectLink" class="card-link link" target="_blank">Visit the Project's Homepage</a></ul>
       <a href="/projects" style="float:right;">View all Projects</a>
       <button id="eventJoin" class="btn btn-secondary">Join Project</button>
       <ul><button id="eventDelete"  class="btn btn-danger"> Delete Event</button></ul>
@@ -28,13 +28,19 @@
     console.log(data)
     if (data) {
       data = data[0];
-      if (data.photo && /(avatar|.(png|gif|jpg$))/.test(data.photo)) {
+      if (data.photo && /(avatar|.(png|gif|jpg|bmp))/.test(data.photo)) {
         $("#eventPhoto").attr("src", data.photo);
       } else {
         $("#eventPhoto").attr("src", "http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png")
       }
       $("#eventTitle").html(data.title);
       $("#eventDescription").html(data.description);
+      if (/(http)|(wwww)/.test(data.link)){
+        $("#projectLink").attr("href", data.link)
+      }else{
+        $("#projectLink").hide();
+      }
+      
       let dateSplit = data.eventDate.split("-");
       for (j = 0; j < dateSplit.length; j++) {
         month = dateSplit[1];
