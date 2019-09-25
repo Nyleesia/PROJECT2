@@ -3,7 +3,7 @@ $("#projSubmit").on("click", function(e) {
   clearErrors();
   var title = $("#projTitle").val();
   var urlPhoto = $("#urlPhoto").val();
-  if (urlPhoto === "" || /.(png|gif|jpg$)/.test(urlPhoto)) {
+  if (!urlPhoto || !/.(png|gif|jpg$)/.test(urlPhoto)) {
     urlPhoto =
       "http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png";
   }
