@@ -34,13 +34,18 @@ router.get("/projects/:id?", isAuthenticated, function(req, res) {
         as: "attendees"
       }
     ]
-  }).then(data => {
-    res.render("projects", {
-      user: req.user,
-      projects: data,
-      view: req.params.id || false
+  })
+    .then(data => {
+      res.render("projects", {
+        user: req.user,
+        projects: data,
+        view: req.params.id || false
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500);
     });
-  });
 });
 
 module.exports = router;

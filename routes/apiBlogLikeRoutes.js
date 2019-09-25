@@ -65,7 +65,8 @@ module.exports = function(app) {
           blogId: req.params.id
         },
         include: [db.User]
-      })
+      }
+    )
       .then(function(dbBlogLike) {
         res.json(dbBlogLike);
         console.log(dbBlogLike);
