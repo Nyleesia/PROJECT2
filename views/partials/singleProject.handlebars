@@ -17,6 +17,8 @@
       <a href="" class="card-link link" target="_blank">Visit the Project's Homepage</a>
       <a href="/projects" style="float:right;">View all Projects</a>
       <button id="eventJoin">Join Project</button>
+      <button id="eventDelete"> Delete Event</button>
+      <button id="eventComplete"> Complete Event</button>
     </div>
   </div>
 </div>
@@ -33,10 +35,7 @@
       }
       $("#eventTitle").html(data.title);
       $("#eventDescription").html(data.description);
-
-
       let dateSplit = data.eventDate.split("-");
-
       for (j = 0; j < dateSplit.length; j++) {
         month = dateSplit[1];
         day = dateSplit[2];
@@ -64,19 +63,35 @@
 
       $("#eventTime").html(time);
       $("#eventVol").html(data.capacity);
-      addAttendees(data.attendees, data.UserId);
+      addAttendees(data.attendees, data.UserId, data.completed);
       $("#eventCompleted").html(data.completed ? 'Completed' : 'Incomplete');
+
+      if (data.completed) {
+        removeAdminView();
+      }
+
+      if(data.attendees.length >= data.capacity){
+        removeJoin();
+      }
     }
   });
 
 
-  function addAttendees(list, projectOwnerId) {
+  function addAttendees(list, projectOwnerId, completed) {
     let currentUser = "{{user.id}}";
     let target = $("#eventAttendees");
     let total = "";
-    console.log(currentUser, projectOwnerId)
+
+    if (completed) {
+      removeJoin();
+      list.forEach(function (attendee) {
+        total += `<div><p>${attendee.username}<p></div>`;
+
+      })
+      return target.html(total);
+    }
+
     if (currentUser == projectOwnerId) {
-      handleAdminView();
       removeJoin();
       list.forEach(function (attendee) {
         total +=
@@ -85,8 +100,8 @@
             </div>`;
       })
     } else {
+      removeAdminView();
       list.forEach(function (attendee) {
-        console.log(attendee.ProjectParticipant.UserId)
         if (attendee.ProjectParticipant.UserId == currentUser) {
           //user is in group
           removeJoin();
@@ -102,8 +117,9 @@
     target.html(total);
   }
 
-  function handleAdminView() {
-
+  function removeAdminView() {
+    $("#eventDelete").hide();
+    $("#eventComplete").hide();
   }
 
   function removeJoin() {
@@ -121,6 +137,33 @@
       }
     }).done(data => {
       location.reload();
+    })
+  });
+
+  $('body').on('click', '#eventComplete', function (e) {
+    // handle removing user from project
+    $.ajax({
+      url: "/api/updateProject",
+      type: "PUT",
+      data: {
+        id: "{{view}}",
+        completed: true
+      }
+    }).done(data => {
+      location.reload();
+    })
+  });
+
+  $('body').on('click', '#eventDelete', function (e) {
+    // handle removing user from project
+    $.ajax({
+      url: "/api/deleteProject/",
+      type: "DELETE",
+      data: {
+        id: "{{view}}"
+      }
+    }).done(data => {
+      window.location.href = "/projects/";
     })
   });
 
