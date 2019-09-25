@@ -28,7 +28,7 @@
     console.log(data)
     if (data) {
       data = data[0];
-      if (data.photo && /(avatar|.(png|gif|jpg$))/.test(data.photo)) {
+      if (data.photo && /(avatar|.(png|gif|jpg|bmp))/.test(data.photo)) {
         $("#eventPhoto").attr("src", data.photo);
       } else {
         $("#eventPhoto").attr("src", "http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png")
