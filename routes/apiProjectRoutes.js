@@ -163,7 +163,7 @@ module.exports = function(app) {
   });
 
   // DELETE route for removing a project
-  app.delete("/deleteProject/:id", function(req, res) {
+  app.delete("/api/deleteProject/:id", function(req, res) {
     db.Projects.destroy(req.body, {
       where: {
         id: req.body.id
