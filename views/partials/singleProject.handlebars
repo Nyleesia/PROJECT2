@@ -1,16 +1,16 @@
 <div class="container">
   <div class="card" style="width: 100rem; padding: 50px; margin: 50px; font-family: moonsans; font-size: 25px;">
-    <h1 class="card-title title"></h1> <br>
-    <img src="" class="card-img-top cardImg" alt="..."> <br>
+    <h1 class="card-title title" id="eventTitle"></h1> <br>
+    <img src="" class="card-img-top cardImg" id="eventPhoto" alt="..."> <br>
     <div class="card-body">
       <p class="card-text details"></p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Date: <span class="date"></span></li>
-      <li class="list-group-item">Time: <span class="time"></span></li>
-      <li class="list-group-item">No. of Volunteers Needed: <span class="volunteers"></span></li>
-      <li class="list-group-item">Attendees: <span class="attendees"></span></li>
-      <li class="list-group-item"> This project is <span class="completed"></span></li>
+      <li class="list-group-item">Date: <span id="eventDate"></span></li>
+      <li class="list-group-item">Time: <span id="eventTime"></span></li>
+      <li class="list-group-item">No. of Volunteers Needed: <span id="eventVol"></span></li>
+      <li class="list-group-item">Attendees: <div id="eventAttendees"></div></li>
+      <li class="list-group-item"> This project is <span id="eventCompleted"></span></li>
     </ul>
     <div class="card-body">
       <a href="" class="card-link link" target="_blank">Visit the Project's Homepage</a>
@@ -33,7 +33,7 @@
       $("#eventDescription").html(data.description);
       
       
-      let dateSplit = info.eventDate.split("-");
+      let dateSplit = data.eventDate.split("-");
       
       for (j = 0; j < dateSplit.length; j++) {
         month = dateSplit[1];
@@ -64,7 +64,7 @@
       $("#eventTime").html(time);
       $("#eventVol").html(data.capacity);
       addAttendees(data.attendees);
-      $("#eventCompleted").html(`${data.completed}`);
+      $("#eventCompleted").html(data.completed? 'Completed': 'Incomplete');
     }
   });
 
