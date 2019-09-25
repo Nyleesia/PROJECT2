@@ -241,3 +241,28 @@ h2 {
         float:none;
     }
 }
+
+*{padding:0;margin:0;}
+
+body{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:18px;
+	background-color:#CCC;
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:rgb(92, 95, 94);
+	color:rgb(245, 239, 239);
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px rgb(224, 220, 220);
+}
+
+.my-float{
+	margin-top:22px;
+}

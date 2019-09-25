@@ -1,27 +1,20 @@
 <!-- Navbar content -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
     <img src="https://user-images.githubusercontent.com/50628151/65193057-a5296f00-da47-11e9-98c0-999c8c2f781a.png"
-        style="width:80px;">
+        style="width:70px;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: moonsans; font-size: 25px;">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" id="account" href="/profile">Account <span class="sr-only">(current)</span></a>
+                <a class="nav-link" id="account" href="/profile" style= "color: grey;">Account <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" style="font-family: moonsans; font-size: 25px;">
-                    Volunteer
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <button id="projectButton" data-toggle="modal" data-target="#postEvent"
-                        style="width:100%; font-family: moonsans; font-size: 20px;">Post Project</button>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"></a>
-                </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Projects <span class="sr-only">(current)</span></a>
+
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -93,6 +86,15 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- Code begins here -->
+
+<a href="#" class="float" data-target="#postEvent" data-toggle="modal">
+<i class="fa fa-plus my-float"></i>
+</a>
+
 <script>
     $("#projSubmit").on("click", function (e) {
         e.preventDefault();
