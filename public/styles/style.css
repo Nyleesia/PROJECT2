@@ -96,7 +96,23 @@ textarea {
     padding:5px;
     position: absolute;
     overflow: auto;
+    background: rgb(156, 156, 156);
+    margin-left: 18%;
+    width:70%;
+    height: 500px;
 
+}
+.userCreatorProject{
+    position: absolute;
+    z-index: 2;
+    font-family: moonsans;
+    padding:5px;
+    position: absolute;
+    overflow: auto;
+    background: rgb(233, 233, 233);
+    margin-left: 18%;
+    width:70%;
+    height: 500px;
 }
 .userProjectsPending {
     position: absolute;
@@ -105,6 +121,10 @@ textarea {
     padding:5px;
     position: absolute;
     overflow:auto;
+    background: rgb(181, 182, 185);
+    margin-left: 18%;
+    width:70%;
+    height: 500px;
 }
 .userName {
     padding-top: 50px;
@@ -139,17 +159,20 @@ textarea {
     width:90px;
     height: 60px;
 }
-.userProjectsAttended {
-   background: rgb(156, 156, 156);
-   margin-left: 18%;
-   width:70%;
-   height: 500px;
+.openCreator {
+    width: 80px;
+    height: 50px;
+    float: left;
+    background: rgb(233, 233, 233);
+    margin:5px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
 }
-.userProjectsPending {
-   background: rgb(181, 182, 185);
-   margin-left: 18%;
-   width:70%;
-   height: 500px;
+.openCreator:hover {
+    color:gray;
+    width:90px;
+    height: 60px;
 }
 .userInformation {
     text-align: center;

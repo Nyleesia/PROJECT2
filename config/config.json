@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "1234",
-    "database": "niceCity",
+    "password": "root",
+    "database": "nicecity",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
@@ -16,10 +16,10 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "p34f1ivga9nnasmw",
-    "password": "d23w273nfxu5ose7",
-    "database": "fb2pixo0xqdgsp47",
-    "host": "s9xpbd61ok2i7drv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": "root",
+    "database": "database_production",
+    "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
   }

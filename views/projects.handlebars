@@ -9,10 +9,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: moonsans; font-size: 25px;">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" id="account" href="/profile" style= "color: grey;">Account <span class="sr-only">(current)</span></a>
+                <a class="nav-link" id="account" href="/profile">Account <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/projects">Projects <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/projects" id="project">Projects <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 search">
@@ -50,7 +50,7 @@
                                 <br>
                                 <br>
                                 <p style="font-family: moonsans; font-size: 30px;">Enter Date:</p>
-                                <input type="date" id="projDate" name="eventDate">
+                                <input type="date" id="projDate" onload="getDate()" class="form-control" name="eventDate">
                                 <br>
                                 <br>
                                 <p style="font-family: moonsans; font-size: 30px;">Enter Time:</p>
