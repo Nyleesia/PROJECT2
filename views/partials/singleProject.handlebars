@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card" style="width: 100rem; padding: 50px; margin: 50px; font-family: moonsans; font-size: 25px;">
+  <div class="card" style="max-width: 100%; width: 100%; padding: 30px;margin: 25px; font-family: moonsans; font-size: 25px;">
     <h1 class="card-title title" id="eventTitle"></h1> <br>
     <img src="" class="card-img-top cardImg" id="eventPhoto" alt="..."> <br>
     <div class="card-body">
@@ -14,11 +14,11 @@
       <li class="list-group-item"> This project is <span id="eventCompleted"></span></li>
     </ul>
     <div class="card-body">
-      <a href="" class="card-link link" target="_blank">Visit the Project's Homepage</a>
+      <ul><a href="" class="card-link link" target="_blank">Visit the Project's Homepage</a></ul>
       <a href="/projects" style="float:right;">View all Projects</a>
-      <button id="eventJoin">Join Project</button>
-      <button id="eventDelete"> Delete Event</button>
-      <button id="eventComplete"> Complete Event</button>
+      <button id="eventJoin" class="btn btn-secondary">Join Project</button>
+      <ul><button id="eventDelete"  class="btn btn-danger"> Delete Event</button></ul>
+      <ul><button id="eventComplete"  class="btn btn-primary"> Complete Event</button></ul>
     </div>
   </div>
 </div>
