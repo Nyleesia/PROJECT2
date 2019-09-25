@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "nicecity",
+    "password": "Abigail09@",
+    "database": "niceCity",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
