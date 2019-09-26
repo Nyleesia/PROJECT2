@@ -97,4 +97,20 @@ router.delete("/removeLikePost/:id?", function(req, res) {
     });
 });
 
+router.delete("/removeLikesBlog/:id?", function(req, res) {
+  db.BlogLikes.destroy({
+    where: {
+      blogId: req.params.id
+    }
+  })
+    .then(function(dbBlogLike) {
+      res.json(dbBlogLike);
+      console.log(dbBlogLike);
+    })
+    .catch(function(err) {
+      res.json(err);
+      console.log(err);
+    });
+});
+
 module.exports = router;
