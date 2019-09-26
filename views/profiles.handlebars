@@ -10,9 +10,8 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#" id="profilePage">Account <span class="sr-only">(current)</span></a>
-
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/projects" id="projectPage">Projects<span class="sr-only">(current)</span></a>
 
             </li>
@@ -39,22 +38,31 @@
     </div>
     <div class="profileInfo"></div>
     <div class="tabs">
+        <div class="openProjects">Upcoming Projects</div>
         <div class="openCreator">Projects Owned</div>
         <div class="openAttended">Attended Projects</div>
-        <div class="openProjects">Upcoming Projects</div>
     </div>
 </div>
 <!-- Projects Attended -->
 <div class="userProjectsAttended">
-
-</div>
+<table class="table">
+  <thead>
+  <tbody id="attendTable">
+  </tbody>
+</table>
 <!-- Projects Pending -->
 <div class="userProjectsPending">
-
+<table class="table">
+  <thead>
+  <tbody id="pendTable">
+      
+  </tbody>
+</table>
 </div>
 <!-- Projects Owned by User -->
 <div class="userCreatorProject">
-
+<ul class="list-group" id="createTable">
+</ul>
 </div>
 <!-- POST Modal  -->
 <div class="container">
@@ -82,15 +90,15 @@
         $(".userProjectsPending").hide();
         $(".userCreatorProject").hide();
     });
-    $(".openProjects").on("click", function () {
-        $(".userProjectsAttended").hide();
-        $(".userProjectsPending").show();
-        $(".userCreatorProject").hide();
-    });
     $(".openCreator").on("click", function (){
         $(".userCreatorProject").show();
         $(".userProjectsPending").hide();
         $(".userProjectsAttended").hide();
+    });
+    $(".openProjects").on("click", function () {
+        $(".userProjectsAttended").hide();
+        $(".userProjectsPending").show();
+        $(".userCreatorProject").hide();
     });
     $.get("/api/attendingProjects/{{user.id}}").then(function (data) {
         console.log(data)
@@ -112,8 +120,8 @@
                     year = dateSplit[0];
                 }
                 // send this data back
-                var newProject = '<div class="row projectLine"><div class="col-md-4">'+data[i].title+'</div><div class="col-md-4"> Date:'+month+'/'+day+'/'+year+'</div><div class="col-md-4"><a href="projects/'+data[i].id+'"+><button id="detailButton">Project Details</button></a>';
-                $(".userProjectsPending").prepend(newProject);
+                var newProject = '<li><div class="row projectLine"><div class="col-md-5">'+data[i].title+'</div><div class="col-md-3"> Date:'+month+'/'+day+'/'+year+'</div><div class="col-md-3"><a href="projects/'+data[i].id+'"+><button id="detailButton">Project Details</button></a><li>';
+               // $(".userProjectsPending").prepend(newProject);
             }
         }
     });
@@ -136,8 +144,8 @@
                     year = dateSplit[0];
                 }
                 // send this data back
-                var newProject = '<div class="row projectLine"><div class="col-md-4">'+data[i].title+'</div><div class="col-md-4"> Date:'+month+'/'+day+'/'+year+'</div><div class="col-md-4"><a href="projects/'+data[i].id+'"+><button id="detailButton">Project Details</button></a>';
-                $(".userProjectsAttended").prepend(newProject);
+                 var newProject = "<th scope='row'></th><td>"+data[i].title+"</td><td>Date:"+month+"/"+day+"/"+year+"</div></td><td>+<a href='projects/"+data[i].id+"'+><button id='detailButton'>Project Details</button></a></td>";
+                $("#attendTable").prepend(newProject);
             }
         }
     });
@@ -160,8 +168,38 @@
                     year = dateSplit[0];
                 }
                 // send this data back
-                var newProject = '<div class="row projectLine"><div class="col-md-4">'+data[i].title+'</div><div class="col-md-4"> Date:'+month+'/'+day+'/'+year+'</div><div class="col-md-4"><a href="projects/'+data[i].id+'"+><button id="detailButton">Project Details</button></a>';
-                $(".userProjectsAttended").prepend(newProject);
+              
+                var newProject = "Hello"+data[i].title;
+                $("#pendTable").prepend(newProject);
+            }
+        }
+    });
+     $.get("/api/projectByUser/{{user.id}}").then(function (data) {
+        if (data.length === "") {
+            var noProject = $("<div>").attr("class", "noProjectAppended");
+            var words =
+                "<h2>Your volunteer box is currently empty. Take a peek at the latest projects posted:   <a href='/projects'>HERE<a><h2>";
+            noProject.append(words);
+            $(".userProjectsAttended").append(noProject);
+        } else {
+            for (var i = 0; i < data.length; i++) {
+                var month;
+                var day;
+                var year;
+                var dateSplit = data[i].eventDate.split("-");
+                for (j = 0; j < dateSplit.length; j++) {
+                    month = dateSplit[1];
+                    day = dateSplit[2];
+                    year = dateSplit[0];
+                }
+                // send this data back
+            var newProject = `
+                             <li class="list-group-item row">
+                             <div class="col-sm-4">${data[i].title}</div>
+                             <div class="col-sm-4">Date: ${month}/${day}/${year}</div>
+                             <div class="col-sm-4"><a href='/projects/${data[i].id}'</div>
+                             </li>`
+                $("#createTable").html(newProject);
             }
         }
     });
