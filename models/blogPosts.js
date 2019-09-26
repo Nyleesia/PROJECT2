@@ -9,6 +9,10 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
+    title: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
     blogPhoto: {
       type: Sequelize.STRING,
       allowNull: true
