@@ -47,7 +47,7 @@
                                 <input type="text" id="projTitle" name="title">
                                 <br>
                                 <br>
-                                <p style="font-family: moonsans; font-size: 30px;">(Optional) Event Photo URL:</p>
+                                <p style="font-family: moonsans; font-size: 30px;">(Optional) Project Photo URL:</p>
                                 <input type="text" id="urlPhoto" name="photo">
                                 <br>
                                 <br>
@@ -64,7 +64,7 @@
                                 <input type="number" id="capacity" min="0" name="capacity">
                                 <br>
                                 <br>
-                                <p style="font-family: moonsans; font-size: 30px;"> Detail of Event:</p>
+                                <p style="font-family: moonsans; font-size: 30px;"> Project Details:</p>
                                 <textarea id="eventDetails" name="description">
                                 </textarea>
                                 <br>
@@ -74,7 +74,7 @@
                                 <br>
                                 <br>
                                 <button type="submit" class="event_form; btn btn-secondary" id="projSubmit"
-                                    style="font-family: moonsans; font-size: 18px;">Submit Event</button>
+                                    style="font-family: moonsans; font-size: 18px;">Submit Project</button>
                                 <div id="projectError"></div>
                         </div>
                     </form>
@@ -91,7 +91,7 @@
 
 <!-- Code begins here -->
 {{#unless view}}
-<a href="#" class="float" data-target="#postEvent" data-toggle="modal">
+<a href="#" class="float" data-target="#postEvent" data-toggle="modal" style= "color: white;">
 <i class="fa fa-plus my-float"></i>
 </a>
 {{/unless}}
