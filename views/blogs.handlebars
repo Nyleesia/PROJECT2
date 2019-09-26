@@ -171,28 +171,23 @@
 
     $("#postSubmit").on("click", function (e) {
         e.preventDefault();
-        let userId = "{{user.id}}";
-        let userName = "{{user.userName}}";
-        var title = $("#title").val();
-        var post = $("#post").val();
-        var blogPhoto = $("#blogPhoto").val();
-        if (blogPhoto === "") {
-            blogPhoto = "https://www.freeiconspng.com/uploads/happy-png-27.png";
-        }
+        const formData = new FormData();
+        formData.append("userName", "{{user.userName}}");
+        formData.append("password", "{{user.id}}");
+        formData.append("title", $("#title").val());
+        formData.append("blogPost", $("#post").val());
+        console.log($("#blogPhoto").prop('files'))
+            / formData.append("photo", $("#blogPhoto").prop('files'));
 
-        $.post("/blog/newPost",
-            {
-                userName: userName,
-                userId: userId,
-                title: title,
-                blogPhoto: blogPhoto,
-                blogPost: post
-            },
-            function (results) {
-                window.location.href = "/blog";
-                console.log(results)
-            });
-    });
+        $.ajax({
+            url: "/blog/newPost",
+            enctype: 'multipart/form-data',
+            processData: false,  // Important!
+            data: formData,
+        }).done(function (results) {
+            window.location.href = "/blog";
+            console.log(results)
+        }));
 
 
 </script>
