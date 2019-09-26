@@ -1,19 +1,19 @@
 
 {{#each projects}}
-<div class="card {{#if this.completed}} completedCard {{/if}}" style="width: 48rem; padding: 22px; margin: 15px; ">
+<div class="card {{#if this.completed}} completedCard {{/if}}" style="width: 48rem; padding: 15px; margin: 15px; ">
+  <h2 class="card-title" style="font-family: moonsans; font-size: 40px; padding: 10px;">{{this.dataValues.title}}</h2>
   <img src="{{{this.dataValues.photo}}}"
-    class="card-img-top" alt="...">
+    class="card-img-top" alt="..."><br>
   <div class="card-body">
-    <h5 class="card-title" style="font-family: moonsans; font-size: 25px;">{{this.dataValues.title}}</h5>
-    <p class="card-text" style="font-family: moonsans; font-size: 25px;">
+    <ul><p class="card-text" style="font-family: moonsans; font-size: 25px;">
       {{this.dataValues.description}}
-    </p>
-  </div>
-  <p style="font-family: moonsans; font-size: 25px;">{{this.dataValues.eventTime}}</p>
-  <p style="font-family: moonsans; font-size: 25px;">{{this.dataValues.eventDate}}</p>
+    </p></ul>
+  <ul><p style="font-family: moonsans; font-size: 25px;">{{this.dataValues.eventTime}}</p></ul>
+  <ul><p style="font-family: moonsans; font-size: 25px;">{{this.dataValues.eventDate}}</p></ul>
   <div class="card-body">
-    <a href="projects/{{this.dataValues.id}}" class="card-link" style= "font-family: moonsans; font-size: 25px;""><strong>View Event
-        Details</strong></a>
+  <ul><a href="projects/{{this.dataValues.id}}" class="card-link" style= "font-family: moonsans; font-size:25px; color: rgb(100, 201, 231)">
+  <strong>View Project Details</strong></a></ul>
+    </div>
   </div>
 </div>
 {{/each}}
