@@ -48,4 +48,45 @@ router.get("/projects/:id?", isAuthenticated, function(req, res) {
     });
 });
 
+//ADDED FOR BLOG
+router.get("/blog", isAuthenticated, function(req, res) {
+  db.BlogPost.findAll({
+    include: [
+      {
+        model: db.User,
+        attributes: ["id", "username"]
+      }
+    ]
+  })
+    .then(function() {
+      res.render("blogs", {
+        user: req.user
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500);
+    });
+});
+
+router.get("/blog/all", isAuthenticated, function(req, res) {
+  db.BlogPost.findAll({
+    include: [
+      {
+        model: db.User,
+        attributes: ["id", "username"]
+      }
+    ]
+  })
+    .then(function() {
+      res.render("blogPosts", {
+        user: req.user
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500);
+    });
+});
+
 module.exports = router;

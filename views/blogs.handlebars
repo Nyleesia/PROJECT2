@@ -1,0 +1,198 @@
+<!-- Navbar content -->
+{{> navBar blog=1}}
+
+<div class="container">
+    <div class="modal fade ma-1" id="postEvent" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-family: moonsans; font-size: 30px;">New Blog
+                    </h4>
+                </div>
+                <form id="blogPost">
+                    <div class="form-group modal-body">
+                        <label for="title">Title:</label>
+                        <input placeholder="Post Title" type="text" class="form-control" id="title">
+
+                        <br />
+                        <label for="post">Post:</label>
+                        <textarea placeholder="Post Body" class="form-control" rows="10" id="post"></textarea>
+                        <br />
+                        <div class="blogPhoto"> Picture:</p>
+                            <input type="file" name="photo" id="blogPhoto"></input>
+                            <span class="error-message"></span>
+                        </div>
+                        <br />
+                        <button id="postSubmit" type="submit" class="btn btn-success submit">Submit Entry</button>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="float" data-target="#postEvent" data-toggle="modal" style="color: white;">
+        <i class="fa fa-plus my-float"></i>
+    </a>
+</div>
+
+<!-- Code begins here -->
+<script>
+    let currentUser = "{{user.id}}"
+    let blogLike = {}
+    $.get("/blog/allPosts").then(function (data) {
+        console.log(data);
+        if (data.length === 0) {
+            var noBlog = $("<div>").attr("class", "noBlogAppended");
+            var words =
+                '<div class="row"> ' +
+                '<div class="col-md-6 offset-md-3">' +
+                "<h2>There are currently no posts. Take a peek at upcoming projects:   <a href='/blogs/allPosts'>HERE<a><h2>" +
+                '</div>' +
+                '</div>';
+            noBlog.append(words);
+            $(".container").prepend(noBlog);
+        } else {
+            for (let i = 0; i < data.length; i++) {
+
+                var createdDate = new Date(data[i].createdAt);
+                var dateString = createdDate.toLocaleDateString();
+
+                var time = createdDate.toLocaleString(undefined, {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                })
+
+                let userId = "{{user.id}}";
+                let userName = "{{user.userName}}";
+                let blogId = "{{blogpost.id}}"
+
+                let likes = 0;
+
+                $.get("/likes/PostLikes/" + data[i].id).then(function (datalike) {
+                    for (let j = 0; j < datalike.length; j++) {
+                        likes += datalike[j].likes;
+                        if (datalike[j].likersId == userId) {
+                            blogLike[data[i].id] = 1;
+                        }
+                    }
+                    if (blogLike[data[i].id] != 1) {
+                        blogLike[data[i].id] = 0;
+                        $("#blogLike" + data[i].id).html("Like Post");
+                    } else {
+                        $("#blogLike" + data[i].id).html("Unlike Post");
+                    }
+                    $("#blog" + data[i].id).html(likes);
+                })
+                    .catch(function () { blogLike[data[i].id] = 0; });
+
+                var likeunlike = "Like"
+                if (blogLike[data[i].id] == 1) {
+                    likeunlike = "Unlike"
+                }
+
+                // send this data back
+                var newBlog =
+                    '<div class="row userBlog"> ' +
+                    '<div class="col-md-12 offset-md-1">' +
+                    '<div class="card" id="newBlogCard">' +
+                    '<p class="card-text text-center">' + data[i].title + '</p>' +
+                    '<img id="imageBlog" src="' + data[i].blogPhoto + '" class="card-img-top" alt="">' +
+                    '<div class="card-body">' +
+                    '<p class="detailsBlog">Post:' + data[i].blogPost + '</p>' +
+                    '</div>' +
+                    '<ul class="list-group list-group-flush">' +
+                    '<li class="list-group-item">User: ' + data[i].userName + '</li>' +
+                    '</ul>' +
+                    '<div class="card-body">' +
+                    '<button id="blogLike' + data[i].id + '"  class="likeBlog"></button> Likes: <span id="blog' + data[i].id + '">' + likes + '</span>' +
+                    '<div class="hours" style="width:120px; height:75px; float:right;">Date:' + dateString + ', Time:' + time + '</div>' + '</div>';
+
+                newBlog += (userName === data[i].userName) ? `<button class="deleteBlog">Delete Post</button>'` : ''
+
+                newBlog +=
+                    `</div>'` +
+                    '</div>' +
+                    '</div>';
+                $(".container").prepend(newBlog);
+
+
+                $(".deleteBlog").on("click", function (e) {
+                    $.ajax({
+                        url: "/blog/deletePost/" + data[i].id,
+                        type: "DELETE",
+                        data: {
+                            id: data[i].id,
+                            blogId: data[i].id
+                        }
+                    }).done(function (data) {
+                        window.location.href = "/blog";
+                    });
+                });
+
+                $(".likeBlog").on("click", function (e) {
+                    if (blogLike[data[i].id] === 0 || blogLike[data[i].id] === NaN) {
+                        $.ajax({
+                            url: "/likes/likeBlogId/" + data[i].id,
+                            type: "POST",
+                            data: {
+                                blogId: data[i].id,
+                                userName: userName,
+                                likersId: userId,
+                                blogLikesId: data[i].id,
+                            }
+                        }).done(function (data) {
+                            window.location.href = "/blog";
+                        });
+
+                    } else {
+                        $.ajax({
+                            url: "/likes/removeLikePost/" + data[i].id,
+                            type: "DELETE",
+                            data: {
+                                id: $(e.target).data().id,
+                                blogId: data[i].id,
+                                likersId: userId,
+                            }
+                        }).done(function (data) {
+                            window.location.href = "/blog";
+                        });
+
+                    }
+
+                });
+
+            }
+        }
+    });
+
+    $("#postSubmit").on("click", function (e) {
+        e.preventDefault();
+        let userId = "{{user.id}}";
+        let userName = "{{user.userName}}";
+        var title = $("#title").val();
+        var post = $("#post").val();
+        var blogPhoto = $("#blogPhoto").val();
+        if (blogPhoto === "") {
+            blogPhoto = "https://www.freeiconspng.com/uploads/happy-png-27.png";
+        }
+
+        $.post("/blog/newPost",
+            {
+                userName: userName,
+                userId: userId,
+                title: title,
+                blogPhoto: blogPhoto,
+                blogPost: post
+            },
+            function (results) {
+                window.location.href = "/blog";
+                console.log(results)
+            });
+    });
+
+
+</script>

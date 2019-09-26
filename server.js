@@ -2,6 +2,8 @@
 require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
+const path = require("path");
+
 const db = require("./models"); //DB models
 
 //Set up app and PORT
@@ -15,7 +17,7 @@ const session = require("express-session");
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Set up Handlebars
 app.engine(
@@ -39,8 +41,8 @@ const userRoute = require("./routes/apiUserRoutes");
 require("./routes/apiProjectRoutes")(app);
 require("./routes/apiProjectParticipantRoutes")(app);
 require("./routes/apiProfileRoutes")(app);
-require("./routes/apiBlogRoutes")(app);
-require("./routes/apiCommentRoutes")(app);
+app.use("/blog", require("./routes/apiBlogRoutes"));
+app.use("/likes", require("./routes/apiBlogLikeRoutes"));
 app.use("/api", apiLoginRoute, userRoute);
 app.use("/", htmlRoute);
 
