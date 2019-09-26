@@ -69,24 +69,4 @@ router.get("/blog", isAuthenticated, function(req, res) {
     });
 });
 
-router.get("/blog/all", isAuthenticated, function(req, res) {
-  db.BlogPost.findAll({
-    include: [
-      {
-        model: db.User,
-        attributes: ["id", "username"]
-      }
-    ]
-  })
-    .then(function() {
-      res.render("blogPosts", {
-        user: req.user
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500);
-    });
-});
-
 module.exports = router;

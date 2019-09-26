@@ -2,6 +2,19 @@ const db = require("../models");
 const express = require("express");
 const router = express.Router();
 
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "public/uploads");
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + "-" + Date.now());
+  }
+});
+
+const upload = multer({ storage: storage });
+
 // GET route for getting all of the posts
 router.get("/allPosts", function(req, res) {
   db.BlogPost.findAll({})
@@ -51,14 +64,14 @@ router.get("/PostName/:userName", function(req, res) {
 });
 
 // POST route for adding a new post
-router.post("/newPost", function(req, res) {
+router.post("/newPost", upload.single("photo"), function(req, res) {
+  console.log(req.file);
   db.BlogPost.create({
     userName: req.body.userName,
     UserId: req.body.userId,
     title: req.body.title,
-    blogPhoto: req.body.blogPhoto,
-    blogPost: req.body.blogPost,
-    include: [db.User]
+    blogPhoto: req.file.path.replace("public", ""),
+    blogPost: req.body.blogPost
   })
     .then(function(dbBlogPost) {
       res.json(dbBlogPost);
