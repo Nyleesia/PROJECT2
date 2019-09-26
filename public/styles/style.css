@@ -127,6 +127,12 @@ textarea {
     width:70%;
     height: 500px;
 }
+
+.userBlog {
+    font-family: moonsans;
+    padding:5px;
+}
+
 .userName {
     padding-top: 50px;
 }
@@ -231,6 +237,11 @@ h2 {
     max-height: 400px;
     margin-left: 17%;
 }
+#imageBlog {
+    max-width: 400px;
+    max-height: 400px;
+    margin-left: 17%;
+}
 .dispara {
     font-size: 12px;
     padding:8px;
@@ -252,6 +263,9 @@ h2 {
     font-size:25px;
 }
 .detailsProject {
+    font-size: 15px;
+}
+.detailsBlog {
     font-size: 15px;
 }
 @media only screen and (max-width: 750px) {
