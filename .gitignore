@@ -4,3 +4,4 @@ npm-debug.log
 .env
 config/config.json
 public/uploads/avatar-*
+public/uploads/photo-*
