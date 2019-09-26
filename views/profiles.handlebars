@@ -1,29 +1,5 @@
 <!-- Navbar content -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light"
-    style="background-color: #e3f2fd; font-family: moonsans; font-size: 25px;">
-    <a class="navbar-brand" href="#">NiceCity</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#" style="color: grey; ">Account <span class="sr-only">(current)</span></a>
-
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/projects">Projects<span class="sr-only">(current)</span></a>
-
-            </li>
-            {{!-- <form class="form-inline my-2 my-lg-0 search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="font-family: moonsans; font-size: 20px;">Search</button>
-        </form> --}}
-    </div>
-    <button type="button" class="btn btn-secondary" style="float:right;"><a class="nav-link"
-            href="/logout" style= "color: white;">Logout</a></button>
-</nav>
+{{> navBar profile=1}}
 <!-- Banner At the Top -->
 <div class="banner">
     <div class="profilePic">

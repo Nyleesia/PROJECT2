@@ -89,6 +89,10 @@
     let target = $("#eventAttendees");
     let total = "";
 
+    if(list.length === 0){
+      total = `<p>No attendees currently.</p>`
+    }
+
     if (completed) {
       removeJoin();
       list.forEach(function (attendee) {
