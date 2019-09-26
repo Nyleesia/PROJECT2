@@ -90,8 +90,8 @@
                 let newProject = `
                              <li class="list-group-item row">
                              <div class="col-sm-4">${data[i].title}</div>
-                             <div class="col-sm-4">Date: ${month}/${day}/${year}</div>
-                             <div class="col-sm-4"><a href='/projects/${data[i].id}'>View Project</a></div>
+                             <div class="col-sm-4">Upcoming Date: ${month}/${day}/${year}</div>
+                             <div class="col-sm-4 text-right"><a href='/projects/${data[i].id}'>View Project</a></div>
                              </li>`
                 $(".userProjectsPending").html(newProject);
             }
@@ -120,9 +120,9 @@
 
                 let newProject = `
                              <li class="list-group-item row">
-                             <div class="col-sm-4">${data[i].title}</div>
-                             <div class="col-sm-4">Date: ${month}/${day}/${year}</div>
-                             <div class="col-sm-4"><a href='/projects/${data[i].id}'>View Project</a></div>
+                             <div class="col-sm-4">Project: ${data[i].title}</div>
+                             <div class="col-sm-4">Attended Date: ${month}/${day}/${year}</div>
+                             <div class="col-sm-4 text-right"><a href='/projects/${data[i].id}'>View Project</a></div>
                              </li>`
                 $(".userProjectsAttended").html(newProject);
             }
@@ -150,9 +150,9 @@
                 // send this data back
                 let newProject = `
                              <li class="list-group-item row">
-                             <div class="col-sm-4">${data[i].title}</div>
-                             <div class="col-sm-4">Date: ${month}/${day}/${year}</div>
-                             <div class="col-sm-4"><a href='/projects/${data[i].id}'>View Project</a></div>
+                             <div class="col-sm-4">Project: ${data[i].title}</div>
+                             <div class="col-sm-4 text-center">Date: ${month}/${day}/${year}</div>
+                             <div class="col-sm-4 text-right"><a class="ml-3" href='/projects/${data[i].id}'>Manage Project</a></div>
                              </li>`
                 $(".userCreatorProject").append(newProject);
             }
