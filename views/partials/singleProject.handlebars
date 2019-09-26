@@ -2,9 +2,6 @@
   <div class="card" style="max-width: 100%; width: 100%; padding: 30px;margin: 25px; font-family: moonsans; font-size: 25px;">
     <h1 class="card-title title" id="eventTitle"></h1> <br>
     <img src="" class="card-img-top cardImg" id="eventPhoto" alt="..."> <br>
-    <div class="card-body">
-      <p class="card-text details"></p>
-    </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Project Details: <span id="projectDetail"></span></li>
       <li class="list-group-item">Date: <span id="eventDate"></span></li>
@@ -35,7 +32,7 @@
         $("#eventPhoto").attr("src", "http://simcloud.com/~atw/wp-content/uploads/2016/10/default.png")
       }
       $("#eventTitle").html(data.title);
-      $("#eventDescription").html(data.description);
+      $("#projectDetail").html(data.description);
       if (/(http)|(wwww)/.test(data.link)){
         $("#projectLink").attr("href", data.link)
       }else{
