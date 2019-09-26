@@ -70,9 +70,8 @@ router.post("/newPost", upload.single("photo"), function(req, res) {
     userName: req.body.userName,
     UserId: req.body.userId,
     title: req.body.title,
-    blogPhoto: req.body.blogPhoto,
-    blogPost: req.body.blogPost,
-    include: [db.User]
+    blogPhoto: req.file.path.replace("public", ""),
+    blogPost: req.body.blogPost
   })
     .then(function(dbBlogPost) {
       res.json(dbBlogPost);

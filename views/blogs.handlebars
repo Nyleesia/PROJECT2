@@ -96,7 +96,7 @@
 
                 // send this data back
                 var newBlog =
-                    '<div class="row userBlog"> ' +
+                    '<div id="mainRowBlog' + data[i].id + '"  class="row userBlog"> ' +
                     '<div class="col-md-12 offset-md-1">' +
                     '<div class="card" id="newBlogCard">' +
                     '<p class="card-text text-center">' + data[i].title + '</p>' +
@@ -111,7 +111,7 @@
                     '<button id="blogLike' + data[i].id + '"  class="likeBlog"></button> Likes: <span id="blog' + data[i].id + '">' + likes + '</span>' +
                     '<div class="hours" style="width:120px; height:75px; float:right;">Date:' + dateString + ', Time:' + time + '</div>' + '</div>';
 
-                newBlog += (userName === data[i].userName) ? `<button class="deleteBlog">Delete Post</button>'` : ''
+                newBlog += (userName === data[i].userName) ? `<button id="deleteblog${data[i].id}"  class="deleteBlog">Delete Post</button>'` : ''
 
                 newBlog +=
                     `</div>'` +
@@ -120,20 +120,31 @@
                 $(".container").prepend(newBlog);
 
 
-                $(".deleteBlog").on("click", function (e) {
+                $("#deleteblog" + data[i].id).on("click", function (e) {
+
                     $.ajax({
-                        url: "/blog/deletePost/" + data[i].id,
+                        url: "/likes/removeLikesBlog/" + data[i].id,
                         type: "DELETE",
                         data: {
-                            id: data[i].id,
                             blogId: data[i].id
                         }
-                    }).done(function (data) {
-                        window.location.href = "/blog";
+                    }).done(function (dataLike) {
+                        $.ajax({
+                            url: "/blog/deletePost/" + data[i].id,
+                            type: "DELETE",
+                            data: {
+                                id: data[i].id,
+                                blogId: data[i].id
+                            }
+                        }).done(function (dataRemove) {
+                            //window.location.href = "/blog";
+                            $("#mainRowBlog" + data[i].id).html("");
+                        });
                     });
+
                 });
 
-                $(".likeBlog").on("click", function (e) {
+                $("#blogLike" + data[i].id).on("click", function (e) {
                     if (blogLike[data[i].id] === 0 || blogLike[data[i].id] === NaN) {
                         $.ajax({
                             url: "/likes/likeBlogId/" + data[i].id,
@@ -144,7 +155,7 @@
                                 likersId: userId,
                                 blogLikesId: data[i].id,
                             }
-                        }).done(function (data) {
+                        }).done(function (dataLike) {
                             window.location.href = "/blog";
                         });
 
@@ -157,14 +168,11 @@
                                 blogId: data[i].id,
                                 likersId: userId,
                             }
-                        }).done(function (data) {
+                        }).done(function (dataLike) {
                             window.location.href = "/blog";
                         });
-
                     }
-
                 });
-
             }
         }
     });
@@ -172,22 +180,26 @@
     $("#postSubmit").on("click", function (e) {
         e.preventDefault();
         const formData = new FormData();
+        formData.append("userId", "{{user.id}}");
         formData.append("userName", "{{user.userName}}");
-        formData.append("password", "{{user.id}}");
         formData.append("title", $("#title").val());
         formData.append("blogPost", $("#post").val());
-        console.log($("#blogPhoto").prop('files'))
-            / formData.append("photo", $("#blogPhoto").prop('files'));
+        console.log($("#blogPhoto").prop('files')[0])
+        formData.append("photo", $("#blogPhoto").prop('files')[0]);
 
-        $.ajax({
-            url: "/blog/newPost",
-            enctype: 'multipart/form-data',
-            processData: false,  // Important!
-            data: formData,
-        }).done(function (results) {
-            window.location.href = "/blog";
-            console.log(results)
-        }));
-
+        fetch("/blog/newPost", {
+            method: "POST",
+            body: formData
+        })
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                if (data.errors) {
+                    return data.errors;
+                }
+                window.location.href = "/blog";
+            });
+    });
 
 </script>
